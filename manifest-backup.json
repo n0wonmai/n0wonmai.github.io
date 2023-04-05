@@ -1,9 +1,0 @@
-{
-  "permissions": [ "activeTab" ],
-  "name": "http://n0wonmai.github.io",
-  "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone",
-  "gcm_sender_id": "71562645621"
-}

@@ -13,8 +13,8 @@ html, body {
 
 a {text-decoration: none; color: aquamarine;}
 a:hover {text-decoration: none; color: rgb(29, 110, 83)}
-button {transition: 0.4s; padding: 15px; background-color: #ffffff; color: #000;}
-button:hover{padding: 17px; opacity: 0.8;}
+button {transition: 0.4s; padding: 15px; background-color: #ffffff; color: #000;border-radius: 4px;}
+button:hover{padding: 15px; opacity: 0.6;}
 
 .container {
     width: auto;

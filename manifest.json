@@ -1,6 +1,6 @@
 {
   "permissions": [ "activeTab" ],
   "name": "WebPush App",
-  "display": "fullscreen",
+  "display": "standalone",
   "gcm_sender_id": "71562645621"
 }

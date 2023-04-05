@@ -1,0 +1,40 @@
+
+html, body {
+    font: 14pt Arial;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(270deg, #28c2ca, #8d18b0);
+    background-size: 400% 400%;
+    -webkit-animation: Root 36s ease infinite;
+    -moz-animation: Root 36s ease infinite;
+    animation: Root 36s ease infinite;
+}
+
+a {text-decoration: none; color: aquamarine;}
+a:hover {text-decoration: none; color: rgb(29, 110, 83)}
+button {transition: 0.4s; padding: 15px; background-color: #ffffff; color: #000;}
+button:hover{padding: 17px; opacity: 0.8;}
+
+.container {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    margin-top: 5em;
+}
+
+@-webkit-keyframes Root {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes Root {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes Root {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}

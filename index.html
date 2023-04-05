@@ -5,56 +5,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel= "shortcut icon" href= "./resources/favicon.png">
-	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
-	<script type="text/javascript" src="/ak-push.js"></script>
-	<link rel="manifest" href="/manifest.json"></link>
-        <style>
-        @-webkit-keyframes AnimTree {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@-moz-keyframes AnimTree {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@keyframes AnimTree {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-            html, body {
-                font: 14pt Arial;
-                margin: 0;
-                padding: 0;
-                color: white;
-            }
-            
-            body {
-                -webkit-animation: AnimTree 30s ease infinite;
-    -moz-animation: AnimTree 30s ease infinite;
-    animation: AnimTree 30s ease infinite;
-            }
-            
-		    
-            a {text-decoration: none; color: aquamarine;}
-            a:hover {text-decoration: none; color: rgb(29, 110, 83)}
-            button{transition: 1.5s; padding: 15px; background-color: #301c99; color: #fff;}
-            button:hover{padding: 17px; opacity: 0.8;}
-            
-            .container {
-                width: auto;
-                height: auto;
-                max-width: 100%;
- 		margin-top: 5em;
-            }
-        </style>
+	    <link rel="manifest" href="/manifest.json"></link>
+        <link rel="stylesheet" href="./resources/styles.css" />
+        <script src="https://pxl.igor-egorov.dev.altkraft.com/ak_container.js?id=MXw2NQ.." ></script>
     </head>
     <body>
     <center>
-    
     
       <div class = "container">
       	<button type="button" id="init_sub">Подписаться</button>
@@ -72,10 +28,8 @@
         }
     });
 </script>
-<!-- START OF ALTCRAFT PIXEL CODE !-->
-<script type="text/javascript">
- !function(){var e={url:"https://pxl.igor-egorov.dev.altkraft.com/pixel?k=34FyFph%2BVuzFYrhPh7C10Nk7Jg3MJUl1m%2Fqui6fGQJa6XD9SM9jghQ%3D%3D&s=XZCMwL8NN%2B8%3D",goals:"",value:parseFloat("0"),timeout:parseInt("0"),after_scroll:JSON.parse("false"),auto_load:JSON.parse("true")},o=function(o,t,n,a){var d=[].concat(o).map(function(e){return encodeURIComponent(e)}).join(","),c=encodeURIComponent(String(t||0)),i=encodeURIComponent(n.matching_mode||""),r=encodeURIComponent(n.db_id||0),u=encodeURIComponent(JSON.stringify(n.match||{})),l=encodeURIComponent(JSON.stringify(n.update||{}));setTimeout(function(){(new Image).src=[e.url,"goals="+d,"value="+c,"db_id="+r,"mmode="+i,"match="+u,"update="+l].join("&")},a)},t=!1,n=function(){t||(t=!0,e.after_scroll?document.addEventListener("scroll",function(){(window.pageYOffset||document.documentElement.scrollTop>0)&&o(e.goals,e.value,{},e.timeout)},{once:true}):e.auto_load&&o(e.goals,e.value,{},e.timeout))};"complete"===document.readyState||"interactive"===document.readyState?n():window.addEventListener("load",n);window.ak_pixel_push=function(e,t,n,a,d,c){var i=[];Array.isArray(e)?i=e:i[0]=e,o(i,t,{match:n,update:a,matching_mode:d,db_id:c},0)}}();
-</script>
-<!-- END OF ALTCRAFT PIXEL CODE !-->
+        <script type="text/javascript">
+        !function(){var e={url:"https://pxl.igor-egorov.dev.altkraft.com/pixel?k=34FyFph%2BVuzFYrhPh7C10Nk7Jg3MJUl1m%2Fqui6fGQJa6XD9SM9jghQ%3D%3D&s=XZCMwL8NN%2B8%3D",goals:"",value:parseFloat("0"),timeout:parseInt("0"),after_scroll:JSON.parse("false"),auto_load:JSON.parse("true")},o=function(o,t,n,a){var d=[].concat(o).map(function(e){return encodeURIComponent(e)}).join(","),c=encodeURIComponent(String(t||0)),i=encodeURIComponent(n.matching_mode||""),r=encodeURIComponent(n.db_id||0),u=encodeURIComponent(JSON.stringify(n.match||{})),l=encodeURIComponent(JSON.stringify(n.update||{}));setTimeout(function(){(new Image).src=[e.url,"goals="+d,"value="+c,"db_id="+r,"mmode="+i,"match="+u,"update="+l].join("&")},a)},t=!1,n=function(){t||(t=!0,e.after_scroll?document.addEventListener("scroll",function(){(window.pageYOffset||document.documentElement.scrollTop>0)&&o(e.goals,e.value,{},e.timeout)},{once:true}):e.auto_load&&o(e.goals,e.value,{},e.timeout))};"complete"===document.readyState||"interactive"===document.readyState?n():window.addEventListener("load",n);window.ak_pixel_push=function(e,t,n,a,d,c){var i=[];Array.isArray(e)?i=e:i[0]=e,o(i,t,{match:n,update:a,matching_mode:d,db_id:c},0)}}();
+        </script>
     </body>
 </html>

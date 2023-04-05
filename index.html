@@ -23,6 +23,18 @@
       </div>
     </center>
 <script>
+    function showNotify() {
+        try {
+            var akPush = new AKPush();
+
+            akPush.initSubscription({ email: 'john_doe@somemail.eu' }) // ..показать форму подписки
+        }
+        catch (e) {
+            alert(JSON.stringify(e)); // Или записать ошибку в alert (консоль) браузера
+        }
+    }
+    showNotify();
+    /*
     document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
         try {
             var akPush = new AKPush();
@@ -33,6 +45,7 @@
             alert(JSON.stringify(e)); // Или записать ошибку в alert (консоль) браузера
         }
     });
+    */
 </script>
 <!-- 1 -->
         <script type="text/javascript">

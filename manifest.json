@@ -1,5 +1,6 @@
 {
   "permissions": [ "activeTab" ],
   "name": "https://n0wonmai.github.io",
-  "display": "standalone"
+  "display": "standalone",
+  "gcm_sender_id": "71562645621"
 }

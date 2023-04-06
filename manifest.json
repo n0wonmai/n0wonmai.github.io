@@ -2,5 +2,7 @@
   "permissions": [ "activeTab" ],
   "name": "WebPush App",
   "short_name": "WPA",
-  "display": "standalone"
+  "display": "standalone",
+  "gcm_sender_id": "my_gcm_sender_id",
+  "gcm_user_visible_only": true
 }

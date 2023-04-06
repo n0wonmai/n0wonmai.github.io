@@ -1,7 +1,6 @@
 {
   "permissions": [ "activeTab" ],
-  "name": "WebPush App",
+  "name": "https://n0wonmai.github.io",
   "short_name": "WPA",
-  "display": "standalone",
-  "gcm_sender_id": "my_gcm_sender_id"
+  "display": "standalone"
 }

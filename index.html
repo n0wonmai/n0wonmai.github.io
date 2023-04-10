@@ -36,10 +36,15 @@
 <script>
     document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
         try {
-            var akPush = new AKPush();
-            console.log(akPush)
 
-            akPush.initSubscription({ email: 'john_doe@somemail.eu' }) // ..показать форму подписки
+            console.log("Button was clicked");
+
+            // Объект AKPush
+            var akPush = new AKPush();
+
+            // Website push api
+            console.log({akPush.config.browsers})
+            akPush.initSubscription({ email: 'john_doe@somemail.eu' }); // ..показать форму подписки
         }
 
         catch (e) {

@@ -43,7 +43,8 @@
             var akPush = new AKPush();
 
             // Website push api
-            console.log({akPush.config.browsers})
+            console.log({akPush});
+            akPush.update({ email: 'john_doe@somemail.eu' });
             akPush.initSubscription({ email: 'john_doe@somemail.eu' }); // ..показать форму подписки
         }
 

@@ -37,14 +37,14 @@
     document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
         try {
 
-            console.log("Button was clicked");
-
             // Объект AKPush
             var akPush = new AKPush();
 
 
             console.log({akPush});
+			console.log("Текст до вызова родписки");
             akPush.initSubscription({ email: 'john_doe@somemail.eu' }); // ..показать форму подписки
+			console.log("Текст после вызова подписки");
         }
 
         catch (e) {

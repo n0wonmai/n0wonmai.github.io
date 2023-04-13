@@ -26,14 +26,17 @@
         <script>
             console.log("Этот текст появляется при загрузке страницы");
 
-            var test = 'ahtung';
+            class TestObj {
+                constructor(msg) {
+                    this._msg = msg;
+                }
+                printMsg() {
+                    console.log(this._msg);
+                }
+            }
 
-            (function testMessage(msg){
-                console.warn('Тестовый варнинг\n' + msg);
-
-                return 'Функция testMessage выполнилась';
-            })(test)
-
+            const obj = new TestObj();
+            obj.printMsg();
 
             </script>
         <div class = "container">

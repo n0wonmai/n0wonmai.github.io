@@ -23,7 +23,19 @@
         <link rel="manifest" href="manifest.json"></link>
     </head>
     <body>
-        <script>console.log("Этот текст появляется при загрузке страницы")</script>
+        <script>
+            console.log("Этот текст появляется при загрузке страницы");
+
+            var test = 'ahtung';
+
+            (function testMessage(msg){
+                console.warn('Тестовый варнинг\n' + msg);
+
+                return 'Функция testMessage выполнилась';
+            })(test)
+
+
+            </script>
         <div class = "container">
             <p>iOS <i class = "apple__icon"></i> Web Push Application</p>
             <p class = "subtitle">Click subscribe to receive notifications</p>

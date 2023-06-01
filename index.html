@@ -18,7 +18,6 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="white" />
 
         <script src="https://pxl.igor-egorov.dev.altkraft.com/ak_container.js?id=MXw2NQ.." ></script>
-        <script src="./wpa.js" ></script>
         <!-- Firebase includes
         <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
@@ -43,6 +42,24 @@
 
 <script>
 
+document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
+    try {
+
+        // Объект AKPush
+        var akPush = new AKPush();
+
+        console.log({akPush});
+        console.log("Текст до вызова родписки");
+        akPush.initSubscription({ email: 'john_doe@somemail.eu' }); // ..показать форму подписки
+        console.log("Текст после вызова подписки");
+    }
+
+    catch (e) {
+        alert(JSON.stringify(e)); // Или записать ошибку в alert (консоль) браузера
+    }
+});
+
+console.log(AKPush);
 
 </script>
 <!-- pixel -->

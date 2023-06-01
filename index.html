@@ -18,7 +18,8 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="white" />
 
         <script src="https://pxl.igor-egorov.dev.altkraft.com/ak_container.js?id=MXw2NQ.." ></script>
-        <!--
+        <script src="./wpa.js" ></script>
+        <!-- Firebase includes
         <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
         <script type="text/javascript" src="ak-push.js"></script>
@@ -26,51 +27,22 @@
         <link rel="manifest" href="manifest.json"></link>
     </head>
     <body>
-        <script>
-	
-            console.log("Этот текст появляется при загрузке страницы");
 
-            class TestObj {
-                constructor(msg) {
-                    this._msg = msg;
-                }
-                printMsg() {
-                    console.log(this._msg);
-                }
-            }
-
-            const obj = new TestObj('Тестовое сообщение');
-            obj.printMsg();
-
-            </script>
         <div class = "container">
             <p>iOS <i class = "apple__icon"></i> Web Push Application</p>
-            <p class = "subtitle">Click subscribe to receive notifications</p>
-            
+            <p class = "subtitle">Click subscribe to receive notifications</p>   
         </div>
 
         <div class = "container" style = "margin-top: 10%;">
             <button type="button" id="init_sub">Subscribe</button>
         </div>
 
+        <div class = "container" style = "margin-top: 10%;">
+            <button type="button" id="run_campaign">Send me push!</button>
+        </div>
+
 <script>
-    document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
-        try {
 
-            // Объект AKPush
-            var akPush = new AKPush();
-
-
-            console.log({akPush});
-			console.log("Текст до вызова родписки");
-            akPush.initSubscription({ email: 'john_doe@somemail.eu' }); // ..показать форму подписки
-			console.log("Текст после вызова подписки");
-        }
-
-        catch (e) {
-            alert(JSON.stringify(e)); // Или записать ошибку в alert (консоль) браузера
-        }
-    });
 
 </script>
 <!-- pixel -->

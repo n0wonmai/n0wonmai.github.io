@@ -59,7 +59,25 @@ document.getElementById('init_sub').addEventListener('click', function() { // П
     }
 });
 
-document.getElementById('run_campaign').addEventListener('click', async function() { 
+document.getElementById('run_campaign').addEventListener('click', async function() {
+
+    async () => {
+        const rawResponse = await fetch('https://igor-egorov.dev.altkraft.com/api/v1.1/campaigns/triggers/start/', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"token": "85253a8c9f1c45afbbec26ae8b335d42", "format": "json", "id": 147, "matching": "profile_id", "profile_id": "646738c3d7b36378e5cf0c77"})
+        });
+        const content = await rawResponse.json();
+
+        console.log(content);
+    }
+});
+
+/*
     console.log('send begin');
     const rawResponse = await fetch('https://igor-egorov.dev.altkraft.com/api/v1.1/campaigns/triggers/start/', {
         mode: 'no-cors',
@@ -73,7 +91,7 @@ document.getElementById('run_campaign').addEventListener('click', async function
     const content = await rawResponse.json();
     console.log(content);
 
-});
+});*/
 
 console.log({AKPush});
 

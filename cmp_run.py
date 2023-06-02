@@ -94,7 +94,7 @@ if __name__ == 'main':
         }
     }
 
-i: int = 0
-while i < MAX_SEND_COUNT:
-    i+=1
-    r = requests.post(url, data=json.dumps(data), headers=headers)
+    i: int = 0
+    while i < MAX_SEND_COUNT:
+        i+=1
+        r = requests.post(url, data=json.dumps(data), headers=headers)

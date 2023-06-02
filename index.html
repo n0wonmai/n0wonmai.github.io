@@ -48,7 +48,6 @@ document.getElementById('init_sub').addEventListener('click', function() { // П
         // Объект AKPush
         var akPush = new AKPush();
 
-        console.log(akPush);
         console.log("Текст до вызова родписки");
         akPush.initSubscription({ email: 'john_doe@somemail.eu' }); // ..показать форму подписки
         console.log("Текст после вызова подписки");
@@ -59,6 +58,7 @@ document.getElementById('init_sub').addEventListener('click', function() { // П
     }
 });
 
+/*
 document.getElementById('run_campaign').addEventListener('click', function() { 
 
   const rawResponse = fetch('https://igor-egorov.dev.altkraft.com/api/v1.1/campaigns/triggers/start/', {
@@ -77,41 +77,7 @@ document.getElementById('run_campaign').addEventListener('click', function() {
 
     console.log(content);
 });
-
-/*
-document.getElementById('run_campaign').addEventListener('click', function() {
-
-    async () => {
-        const rawResponse = await fetch('https://igor-egorov.dev.altkraft.com/api/v1.1/campaigns/triggers/start/', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({"token": "85253a8c9f1c45afbbec26ae8b335d42", "format": "json", "id": 147, "matching": "profile_id", "profile_id": "646738c3d7b36378e5cf0c77"})
-        });
-        const content = await rawResponse.json();
-
-        console.log(content);
-    }
-}); */
-
-/*
-    console.log('send begin');
-    const rawResponse = await fetch('https://igor-egorov.dev.altkraft.com/api/v1.1/campaigns/triggers/start/', {
-        mode: 'no-cors',
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({"token": "85253a8c9f1c45afbbec26ae8b335d42", "format": "json", "id": 147, "matching": "profile_id", "profile_id": "646738c3d7b36378e5cf0c77"})
-  });
-    const content = await rawResponse.json();
-    console.log(content);
-
-});*/
+*/
 
 console.log({AKPush});
 

@@ -62,7 +62,8 @@ document.getElementById('init_sub').addEventListener('click', function() { // П
 (async () => {
   const rawResponse = await fetch('https://igor-egorov.dev.altkraft.com/api/v1.1/campaigns/triggers/start/', {
     method: 'POST',
-    crossDomain: true,
+    origin: "*",
+    methods: "GET,PUT,POST,DELETE",
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'

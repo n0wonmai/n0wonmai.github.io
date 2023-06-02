@@ -75,10 +75,8 @@ document.getElementById('run_campaign').addEventListener('click', function() { /
 
         });
         */
-
-        async () => {
             console.log('req begin');
-            const rawResponse = await fetch('https://igor-egorov.dev.altkraft.com/api/v1.1/campaigns/triggers/start/', {
+            const rawResponse = fetch('https://igor-egorov.dev.altkraft.com/api/v1.1/campaigns/triggers/start/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -88,10 +86,9 @@ document.getElementById('run_campaign').addEventListener('click', function() { /
                     "token": "85253a8c9f1c45afbbec26ae8b335d42", "format": "json", "id": 147, "matching": "profile_id", "profile_id": "646738c3d7b36378e5cf0c77"
                 })
             });
-            const content = await rawResponse.json();
+            const content = rawResponse.json();
 
             console.log(content);
-            }
     }
 
     catch (e) {

@@ -59,7 +59,7 @@ document.getElementById('init_sub').addEventListener('click', function() { // П
     }
 });
 
-document.getElementById('run_campaign').addEventListener('click', async function() {
+document.getElementById('run_campaign').addEventListener('click', function() {
 
     async () => {
         const rawResponse = await fetch('https://igor-egorov.dev.altkraft.com/api/v1.1/campaigns/triggers/start/', {

@@ -48,10 +48,29 @@ document.getElementById('init_sub').addEventListener('click', function() { // П
         // Объект AKPush
         var akPush = new AKPush();
 
-        console.log({akPush});
+        console.log(akPush);
         console.log("Текст до вызова родписки");
         akPush.initSubscription({ email: 'john_doe@somemail.eu' }); // ..показать форму подписки
         console.log("Текст после вызова подписки");
+    }
+
+    catch (e) {
+        alert(JSON.stringify(e)); // Или записать ошибку в alert (консоль) браузера
+    }
+});
+
+
+document.getElementById('run_campaign').addEventListener('click', function() { // По клику на кнопку..
+    try {
+            console.log('Клик по run_campaign');
+            fetch("https://igor-egorov.dev.altkraft.com/api/v1.1/campaigns/triggers/start/", {
+            mode: 'no-cors',
+            body: { "token": "85253a8c9f1c45afbbec26ae8b335d42",    "format": "json",    "id": 39,    "matching": "email",    "email": "bulba@azcabaeba.su"},
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST"
+        });
     }
 
     catch (e) {

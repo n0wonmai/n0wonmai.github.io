@@ -3,7 +3,8 @@ import requests
 
 MAX_SEND_COUNT = 100
 
-if __name__ == 'main':
+def test():
+
     url = "https://igor-egorov.dev.altkraft.com/ajax/campaign_save_v2"
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
     data = {
@@ -98,3 +99,7 @@ if __name__ == 'main':
     while i < MAX_SEND_COUNT:
         i+=1
         r = requests.post(url, data=json.dumps(data), headers=headers)
+
+
+if __name__ == 'main':
+    test()

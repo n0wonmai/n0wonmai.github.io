@@ -16,9 +16,8 @@
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="white" />
-        <script src="./assets/ak-push.js" ></script>
-        <script src="./assets/service-worker.js" ></script>
-        <script src="cache-service-worker.js" ></script>
+
+        <script src="./ak-push.js" ></script>
 
         <!-- Firebase includes
         <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
@@ -49,10 +48,16 @@ document.getElementById('init_sub').addEventListener('click', function() { // П
 
         // Объект AKPush
         var akPush = new AKPush();
+        console.log({AKPush});
 
         console.log("Текст до вызова родписки");
         akPush.initSubscription({ email: 'john_doe@somemail.eu' }); // ..показать форму подписки
         console.log("Текст после вызова подписки");
+
+        const registration = navigator.serviceWorker.register("cache-service-worker.js", {
+        scope: "/",
+      });
+        console.log(registration);
     }
 
     catch (e) {
@@ -80,8 +85,6 @@ document.getElementById('run_campaign').addEventListener('click', function() {
     console.log(content);
 });
 */
-
-console.log({AKPush});
 
 </script>
 <!-- pixel -->

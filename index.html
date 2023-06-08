@@ -16,8 +16,9 @@
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+        <script src="./assets/ak-push.js" ></script>
+        <script src="./assets/service-worker.js" ></script>
 
-        <script src="https://pxl.igor-egorov.dev.altkraft.com/ak_container.js?id=MXw2NQ.." ></script>
         <!-- Firebase includes
         <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
@@ -44,6 +45,7 @@ window.onload = () => navigator.serviceWorker.getRegistrations().then(function(r
 
 document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
     try {
+        importScripts('./cache-service-worker.js')
 
         // Объект AKPush
         var akPush = new AKPush();

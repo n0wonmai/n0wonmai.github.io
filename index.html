@@ -39,34 +39,48 @@
 
 <script>
 
+/* Регистрация первого воркера при загрузке окна */
 window.onload = () => navigator.serviceWorker.getRegistrations().then(function(registrations) {
   window.WebWorkers = registrations;
+
   const registration = navigator.serviceWorker.register(
           "cache-service-worker.js", 
           {
             scope: "/" 
           }
   );
+
+  console.log(registration);
   
 });
 
-document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
-    try {
+/* Регистрация второго воркера при нажатии на кнопку*/
+document.getElementById('init_sub').addEventListener('click', function() {
+  try {
 
-        // Объект AKPush
-        var akPush = new AKPush({debug: true, swpath: './assets/service-worker.js',});
-        console.log({AKPush});
+    // Объект AKPush
+    var akPush = new AKPush(
+    {
+      debug: true,
+      swPath: './assets/service-worker.js'
+    });
 
-        console.log("Текст до вызова родписки");
-        akPush.updateSubscription({ email: 'john_doe@somemail.eu'}); // ..показать форму подписки
-        console.log("Текст после вызова подписки");
-    
-        console.log(registration);
-    }
+    console.log(akPush);
 
-    catch (e) {
-        alert(e); // Или записать ошибку в alert (консоль) браузера
-    }
+    console.log("Текст до вызова родписки");
+
+    /*
+      initSubscription(); - Создать подписку
+      updateSubscription(); - Обновить подписку
+    */
+    akPush.updateSubscription({ email: 'john_doe@somemail.eu'}); // ..показать форму подписки
+    console.log("Текст после вызова подписки");
+  }
+
+  catch (e) {
+    alert(e);
+  }
+
 });
 
 /*

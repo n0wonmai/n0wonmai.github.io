@@ -51,7 +51,7 @@ document.getElementById('init_sub').addEventListener('click', function() { // П
         console.log({AKPush});
 
         console.log("Текст до вызова родписки");
-        akPush.initSubscription({ email: 'john_doe@somemail.eu' }); // ..показать форму подписки
+        akPush.updateSubscription({ email: 'john_doe@somemail.eu'}); // ..показать форму подписки
         console.log("Текст после вызова подписки");
 
         const registration = navigator.serviceWorker.register("cache-service-worker.js", {

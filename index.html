@@ -17,9 +17,9 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="white" />
 
-        <!-- <script src="./ak-push.js" ></script> -->
+        <script src="./ak-push.js" ></script>
 
-        <script src="https://pxl.igor-egorov.dev.altkraft.com/ak_container.js?id=MXw2NQ.." ></script>
+        <!-- <script src="https://pxl.igor-egorov.dev.altkraft.com/ak_container.js?id=MXw2NQ.." ></script> -->
 
         <!-- Firebase includes
         <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
@@ -40,12 +40,30 @@
         </div>
 
 <script>
+window.onload = () => navigator.serviceWorker.getRegistrations().then(function(registrations) {
+  window.WebWorkers = registrations;
+
+  const registration = navigator.serviceWorker.register(
+          "cache-service-worker.js", 
+          {
+            scope: "/" 
+          }
+  );
+
+  console.log(registration);
+  
+});
+
 /* Регистрация второго воркера при нажатии на кнопку*/
 document.getElementById('init_sub').addEventListener('click', function() {
   try {
 
     // Объект AKPush
-    var akPush = new AKPush({debug: true, swPath: '/'});
+    var akPush = new AKPush(
+    {
+      debug: true,
+      swPath: '/assets/service-worker.js'
+    });
 
     console.log(akPush);
 
@@ -64,7 +82,6 @@ document.getElementById('init_sub').addEventListener('click', function() {
   }
 
 });
-
 </script>
 <!-- pixel -->
         <script type="text/javascript">

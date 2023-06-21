@@ -40,33 +40,29 @@
         </div>
 
 <script>
-window.onload = () => navigator.serviceWorker.getRegistrations().then(function(registrations) {
-  window.WebWorkers = registrations;
+  window.onload = () => navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    window.WebWorkers = registrations;
 
-  const registration = navigator.serviceWorker.register(
-          "cache-service-worker.js", 
-          {
-            scope: "/" 
-          }
-  );
+    const registration = navigator.serviceWorker.register(
+            "cache-service-worker.js", 
+            {
+              scope: "/" 
+            }
+    );
 
-  console.log(registration);
-  console.log("window.akPush.initSubscription({ email: 'john_doe@somemail.eu'});")
+    console.log(registration);
+    console.log("window.akPush.initSubscription({ email: 'john_doe@somemail.eu'});");
+
+    // Объект AKPush
+    window.akPush = new AKPush();
+
+    console.log(akPush);
   
-});
+  });
 
 /* Регистрация второго воркера при нажатии на кнопку*/
 document.getElementById('init_sub').addEventListener('click', function() {
   try {
-
-    // Объект AKPush
-    window.akPush = new AKPush(
-    {
-      debug: true,
-      swPath: '/assets/service-worker.js'
-    });
-
-    console.log(akPush);
 
     console.log("Текст до вызова подписки");
 

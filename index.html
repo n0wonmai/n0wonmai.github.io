@@ -17,9 +17,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="white" />
 
-        <script src="./ak-push.js" ></script>
-
-        <!-- <script src="https://pxl.igor-egorov.dev.altkraft.com/ak_container.js?id=MXw2NQ.." ></script> -->
+        <script src="https://pxl.igor-egorov.dev.altkraft.com/ak_container.js?id=MXw2OQ.." ></script>
 
         <!-- Firebase includes
         <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
@@ -36,7 +34,7 @@
         </div>
 
         <div class = "container" style = "margin-top: 10%;">
-            <button type="button" id="init_sub">Subscribe</button>
+            <button type="button" id="init_sub">Subscribe</button> <br />
             <button type="button" id="init_sub_2">Subscribe 2nd profile</button>
         </div>
 
@@ -45,9 +43,9 @@
     window.WebWorkers = registrations;
 
     const registration = navigator.serviceWorker.register(
-            "cache-service-worker.js", 
+            "service-worker.js", 
             {
-              scope: "/" 
+              scope: "/"
             }
     );
 

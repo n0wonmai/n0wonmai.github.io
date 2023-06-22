@@ -37,6 +37,7 @@
 
         <div class = "container" style = "margin-top: 10%;">
             <button type="button" id="init_sub">Subscribe</button>
+            <button type="button" id="init_sub_2">Subscribe 2nd profile</button>
         </div>
 
 <script>
@@ -71,6 +72,26 @@ document.getElementById('init_sub').addEventListener('click', function() {
       updateSubscription(); - Обновить подписку
     */
     akPush.initSubscription({ email: 'john_doe@somemail.eu'}); // ..показать форму подписки
+    console.log("Текст после вызова подписки");
+  }
+
+  catch (e) {
+    alert(e);
+  }
+
+});
+
+/* Регистрация второго воркера при нажатии на кнопку*/
+document.getElementById('init_sub_2').addEventListener('click', function() {
+  try {
+
+    console.log("Текст до вызова подписки");
+
+    /*
+      initSubscription(); - Создать подписку
+      updateSubscription(); - Обновить подписку
+    */
+    akPush.initSubscription({ email: 'john_doe_2748237423@somemail.eu'}); // ..показать форму подписки
     console.log("Текст после вызова подписки");
   }
 

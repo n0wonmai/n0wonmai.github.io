@@ -61,6 +61,16 @@
   });
   */
 
+    
+  window.onload = function() {
+
+    // Объект AKPush
+    window.akPush = new AKPush();
+
+    console.log(akPush);
+
+  };
+
 /* Регистрация второго воркера при нажатии на кнопку*/
 document.getElementById('init_sub').addEventListener('click', function() {
   try {

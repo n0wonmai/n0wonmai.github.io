@@ -35,8 +35,9 @@
         </div>
 
         <div class = "container" style = "margin-top: 10%;">
-            <button type="button" id="init_sub">Subscribe</button> <br />
+            <button type="button" id="init_sub">Subscribe</button> <br /><br />
             <button type="button" id="init_sub_2">Subscribe 2nd profile</button>
+            <button type="button" id="killer">KILL WORKER</button>
         </div>
 
 <script>
@@ -111,6 +112,14 @@ document.getElementById('init_sub_2').addEventListener('click', function() {
   }
 
 });
+
+document.getElementById('killer').addEventListener('click', function() {
+  const registrations = navigator.serviceWorker.getRegistrations();
+    for(let registration of registrations) {
+        registration.unregister();
+    } 
+});
+
 </script>
 <!-- pixel -->
         <script type="text/javascript">

@@ -113,8 +113,8 @@ document.getElementById('init_sub_2').addEventListener('click', function() {
 
 });
 
-document.getElementById('killer').addEventListener('click', function() {
-  const registrations = navigator.serviceWorker.getRegistrations();
+document.getElementById('killer').addEventListener('click', async function() {
+  registrations = await navigator.serviceWorker.getRegistrations();
     for(let registration of registrations) {
         registration.unregister();
     } 

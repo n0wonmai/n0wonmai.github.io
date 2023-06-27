@@ -15,9 +15,9 @@ html, body {
 
 a {text-decoration: none; color: aquamarine;}
 a:hover {text-decoration: none; color: rgb(29, 110, 83)}
-button {margin: 20px; opacity: 0.9; border: none; transition: 0.4s; padding: 15px; background-color: #ffffff; color: #000;border-radius: 4px; -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2); -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2); box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);}
-button:hover{padding: 15px; opacity: 0.6; cursor: pointer;}
-button:active{background-color: rgb(104, 54, 133); color: white}
+button {opacity: 0.9; border: none; transition: 0.4s; padding: 15px; background-color: #ffffff; color: #000;border-radius: 4px; -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2); -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2); box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);}
+button:hover {padding: 15px; opacity: 0.6; cursor: pointer;}
+button:active {background-color: rgb(104, 54, 133); color: white}
 
 .container {
     max-width: 100%;
@@ -43,6 +43,21 @@ button:active{background-color: rgb(104, 54, 133); color: white}
     margin: 0;
 }
 
+.container .container__toolbox {
+    display: block;
+    max-width: 100%;
+    width: 20%;
+    height: 15%;
+    max-height: 10%;
+    place-items: center;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.container .text {
+    font-size: 19pt !important;
+}
+
 @-webkit-keyframes Root {
     0%{background-position:0% 50%}
     50%{background-position:100% 50%}
@@ -66,6 +81,9 @@ button:active{background-color: rgb(104, 54, 133); color: white}
     }
     .container .subtitle {
         font-size: 10pt;
+    }
+    .container .container__toolbox {
+        width: 50%;
     }
 }
 

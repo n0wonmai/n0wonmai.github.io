@@ -35,10 +35,13 @@
         </div>
 
         <div class = "container" style = "margin-top: 10%;">
-            <button type="button" id="init_sub">Subscribe profile #1</button>
-            <button type="button" id="init_sub_2">Subscribe profile #2</button>
-            <button type="button" id="reset">Reset token</button>
-            <button type="button" id="killer">Kill workers</button>
+            <div class = "container__toolbox">
+              <button type="button" id="init_sub" style = "margin-top: 10%;">Subscribe profile #1</button>
+              <button type="button" id="init_sub_2" style = "margin-top: 10%;">Subscribe profile #2</button>
+              <button type="button" id="reset" style = "margin-top: 10%;">Reset token</button>
+              <button type="button" id="killer" style = "margin-top: 10%;">Kill workers</button>
+            </div>
+            <p id ="txt" class="text">Hi 😜</p>
         </div>
 
 <script>
@@ -52,45 +55,54 @@
 
   };
 
-/* Регистрация профиля 1 */
-document.getElementById('init_sub').addEventListener('click', function() {
-  try {
-    akPush.initSubscription({ email: 'john_doe@somemail.eu'}); // ..показать форму подписки
-    console.log("Текст после вызова подписки");
+  function setText(id, text) {
+    var element = document.getElementById(id);
+    element.innerText = text;
   }
 
-  catch (e) {
-    alert(e);
-  }
+  /* Регистрация профиля 1 */
+  document.getElementById('init_sub').addEventListener('click', function() {
+    try {
+      var email = 'john_doe@somemail.eu';
+      akPush.initSubscription({ email: email}); // ..показать форму подписки
+      setText('txt', `Профиль ${email} подписан`);
+    }
 
-});
+    catch (e) {
+      alert(e);
+    }
 
-/* Регистрация профиля 2 */
-document.getElementById('init_sub_2').addEventListener('click', function() {
-  try {
-    akPush.initSubscription({ email: 'second_profile@mail.ru'}); // ..показать форму подписки
-    console.log("Текст после вызова подписки");
-  }
+  });
 
-  catch (e) {
-    alert(e);
-  }
+  /* Регистрация профиля 2 */
+  document.getElementById('init_sub_2').addEventListener('click', function() {
+    try {
+      var email = 'second_profile@mail.ru';
+      akPush.initSubscription({ email: email}); // ..показать форму подписки
+      setText('txt', `Профиль ${email} подписан`);
+    }
 
-});
+    catch (e) {
+      alert(e);
+    }
 
-/* Удалить воркеры */
-document.getElementById('killer').addEventListener('click', async function() {
-  registrations = await navigator.serviceWorker.getRegistrations();
-    for(let registration of registrations) {
-        registration.unregister();
-    } 
-});
+  });
 
-/* Сбросить токен */
-document.getElementById('reset').addEventListener('click', function() {
-  let akp = AKPush;
-  akp.removeToken();
-});
+  /* Удалить воркеры */
+  document.getElementById('killer').addEventListener('click', async function() {
+    registrations = await navigator.serviceWorker.getRegistrations();
+      for(let registration of registrations) {
+          registration.unregister();
+          setText('txt', `Воркер ${registration} удален`);
+      } 
+  });
+
+  /* Сбросить токен */
+  document.getElementById('reset').addEventListener('click', async function() {
+    let akp = AKPush;
+    await akp.removeToken();
+    setText('txt', `Токен удален`);
+  });
 
 
 </script>

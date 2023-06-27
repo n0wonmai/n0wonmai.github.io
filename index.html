@@ -93,7 +93,7 @@
     registrations = await navigator.serviceWorker.getRegistrations();
       for(let registration of registrations) {
           registration.unregister();
-          setText('txt', `Воркер ${registration} удален`);
+          setText('txt', `Воркер ${registration.active.scriptURL} удален`);
       } 
   });
 

@@ -15,7 +15,7 @@ html, body {
 
 a {text-decoration: none; color: aquamarine;}
 a:hover {text-decoration: none; color: rgb(29, 110, 83)}
-button {opacity: 0.9; border: none; transition: 0.4s; padding: 15px; background-color: #ffffff; color: #000;border-radius: 4px; -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2); -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2); box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);}
+button {margin: 20px; opacity: 0.9; border: none; transition: 0.4s; padding: 15px; background-color: #ffffff; color: #000;border-radius: 4px; -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2); -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2); box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);}
 button:hover{padding: 15px; opacity: 0.6; cursor: pointer;}
 button:active{background-color: rgb(104, 54, 133); color: white}
 

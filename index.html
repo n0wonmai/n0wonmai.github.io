@@ -93,7 +93,7 @@
     registrations = await navigator.serviceWorker.getRegistrations();
       for(let registration of registrations) {
           registration.unregister();
-          setText('txt', `Worker ${registration.active.scriptURL} removed`);
+          setInterval(setText('txt', `Worker ${registration.active.scriptURL} removed`)), 3000;
       } 
   });
 

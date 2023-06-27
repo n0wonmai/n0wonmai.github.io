@@ -38,6 +38,8 @@
             <div class = "container__toolbox">
               <button type="button" id="init_sub" style = "margin-top: 10%;">Subscribe profile #1</button>
               <button type="button" id="init_sub_2" style = "margin-top: 10%;">Subscribe profile #2</button>
+              <button type="button" id="init_sub_bunch" style = "margin-top: 10%;">Subscribe bunch profiles with one token</button>
+              <button type="button" id="init_sub_bunch_new_token" style = "margin-top: 10%;">Subscribe bunch profiles with new tokens</button>
               <button type="button" id="reset" style = "margin-top: 10%;">Reset token</button>
               <button type="button" id="killer" style = "margin-top: 10%;">Kill workers</button>
             </div>
@@ -45,6 +47,14 @@
         </div>
 
 <script>
+
+  const profileEmails = [
+    'john_doe@somemail.eu',
+    'kevin_mcclain@mail.com',
+    'ian_hecox@hotmail.com',
+    'dude@postal.two',
+    'nick@mail.cz'
+  ]
   
   // При загрузке окна инициализируется AKPush
   window.onload = function() {
@@ -52,23 +62,62 @@
     // Объект AKPush
     window.akPush = new AKPush();
     console.log(akPush);
-
   };
 
+  // Установка текста
   function setText(id, text) {
     var element = document.getElementById(id);
     element.innerText = text;
   }
 
-  /* Регистрация профиля 1 */
-  document.getElementById('init_sub').addEventListener('click', function() {
+  /* Регистрация группы профилей c новым токеном */
+  for ( var i = 0; i < 5; i++ ) {
+    document.getElementById('init_bunch').addEventListener('click', async function() {
     try {
-      var email = 'john_doe@somemail.eu';
-      akPush.initSubscription({ email: email}); // ..показать форму подписки
-      setText('txt', `Profile ${email} was subbed`);
+      var akp = AKPush;
+      akPush.initSubscription({ email: profileEmails[i]}); // ..показать форму подписки
+      console.log(`Запрошена подписка на email: ${profileEmails[i]}`);
+      setText('txt', `Subscription on email: ${profileEmails[i]}`);
+
+      await akp.removeToken();
+      console.log('Токен удален');
     }
 
     catch (e) {
+      console.log(`Подписка на email: ${profileEmails[i]} не удалась`);
+      alert(e);
+    }
+
+  });
+  }
+
+  /* Регистрация группы профилей c одним токеном */
+  for ( var i = 0; i < 5; i++ ) {
+    document.getElementById('init_bunch').addEventListener('click', function() {
+    try {
+      akPush.initSubscription({ email: profileEmails[i]}); // ..показать форму подписки
+      console.log(`Запрошена подписка на email: ${profileEmails[i]}`);
+      setText('txt', `Subscription on email: ${profileEmails[i]}`);
+    }
+
+    catch (e) {
+      console.log(`Подписка на email: ${profileEmails[i]} не удалась`);
+      alert(e);
+    }
+
+  });
+  }
+
+  /* Регистрация профиля 1 */
+  document.getElementById('init_sub').addEventListener('click', function() {
+    try {
+      akPush.initSubscription({ email: profileEmails[0]}); // ..показать форму подписки
+      console.log(`Запрошена подписка на email: ${profileEmails[0]}`);
+      setText('txt', `Subscription on email: ${profileEmails[0]}`);
+    }
+
+    catch (e) {
+      console.log(`Подписка на email: ${profileEmails[0]} не удалась`);
       alert(e);
     }
 
@@ -77,12 +126,13 @@
   /* Регистрация профиля 2 */
   document.getElementById('init_sub_2').addEventListener('click', function() {
     try {
-      var email = 'second_profile@mail.ru';
-      akPush.initSubscription({ email: email}); // ..показать форму подписки
-      setText('txt', `Profile ${email} was subbed`);
+      akPush.initSubscription({ email: profileEmails[1]}); // ..показать форму подписки
+      console.log(`Запрошена подписка на email: ${profileEmails[1]}`);
+      setText('txt', `Subscription on email: ${profileEmails[1]}`);
     }
 
     catch (e) {
+      console.log(`Подписка на email: ${profileEmails[1]} не удалась`);
       alert(e);
     }
 
@@ -90,12 +140,17 @@
 
   /* Удалить воркеры */
   document.getElementById('killer').addEventListener('click', async function() {
-    registrations = await navigator.serviceWorker.getRegistrations();
-      for(let registration of registrations) {
-          registration.unregister();
-          console.log('Воркер удален');
-          setInterval(setText('txt', `Worker ${registration.active.scriptURL} removed`)), 3000;
-      } 
+    try {
+      registrations = await navigator.serviceWorker.getRegistrations();
+        for ( let registration of registrations ) {
+            registration.unregister();
+            console.log('Воркер удален');
+            setInterval(setText('txt', `Worker ${registration.active.scriptURL} removed`)), 3000;
+        }
+    }
+    catch(e) {
+      
+    }
   });
 
   /* Сбросить токен */

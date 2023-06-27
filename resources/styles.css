@@ -55,8 +55,8 @@ button:active {background-color: rgb(104, 54, 133); color: white}
 }
 
 .container .text {
-    display: block;
-    max-width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
     font-size: 19pt !important;
 }
 

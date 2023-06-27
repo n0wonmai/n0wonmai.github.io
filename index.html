@@ -34,7 +34,7 @@
             <p class = "subtitle">Click subscribe to receive notifications</p>   
         </div>
 
-        <div class = "container" style = "margin-top: 10%;">
+        <div class = "container" style = "margin-top: 5%;">
             <div class = "container__toolbox">
               <button type="button" id="init_sub" style = "margin-top: 10%;">Subscribe profile #1</button>
               <button type="button" id="init_sub_2" style = "margin-top: 10%;">Subscribe profile #2</button>
@@ -93,6 +93,7 @@
     registrations = await navigator.serviceWorker.getRegistrations();
       for(let registration of registrations) {
           registration.unregister();
+          console.log('Воркер удален');
           setInterval(setText('txt', `Worker ${registration.active.scriptURL} removed`)), 3000;
       } 
   });
@@ -101,6 +102,8 @@
   document.getElementById('reset').addEventListener('click', async function() {
     let akp = AKPush;
     await akp.removeToken();
+    localStorage.clear();
+    console.log('Токен удален');
     setText('txt', `Token Removed`);
   });
 

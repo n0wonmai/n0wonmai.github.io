@@ -71,16 +71,17 @@
   }
 
   /* Регистрация группы профилей c новым токеном */
-  for ( var i = 0; i < 5; i++ ) {
-    document.getElementById('init_bunch').addEventListener('click', async function() {
+  document.getElementById('init_sub_bunch_new_token').addEventListener('click', async function() {
     try {
       var akp = AKPush;
-      akPush.initSubscription({ email: profileEmails[i]}); // ..показать форму подписки
-      console.log(`Запрошена подписка на email: ${profileEmails[i]}`);
-      setText('txt', `Subscription on email: ${profileEmails[i]}`);
+      for ( var i = 0; i < 5; i++ ) {
+        akPush.initSubscription({ email: profileEmails[i]}); // ..показать форму подписки
+        console.log(`Запрошена подписка на email: ${profileEmails[i]}`);
+        setText('txt', `Subscription on email: ${profileEmails[i]}`);
 
-      await akp.removeToken();
-      console.log('Токен удален');
+        await akp.removeToken();
+        console.log('Токен удален');
+      }
     }
 
     catch (e) {
@@ -89,15 +90,16 @@
     }
 
   });
-  }
+  
 
   /* Регистрация группы профилей c одним токеном */
-  for ( var i = 0; i < 5; i++ ) {
-    document.getElementById('init_bunch').addEventListener('click', function() {
+  document.getElementById('init_sub_bunch').addEventListener('click', function() {
     try {
-      akPush.initSubscription({ email: profileEmails[i]}); // ..показать форму подписки
-      console.log(`Запрошена подписка на email: ${profileEmails[i]}`);
-      setText('txt', `Subscription on email: ${profileEmails[i]}`);
+      for ( var i = 0; i < 5; i++ ) {
+        akPush.initSubscription({ email: profileEmails[i]}); // ..показать форму подписки
+        console.log(`Запрошена подписка на email: ${profileEmails[i]}`);
+        setText('txt', `Subscription on email: ${profileEmails[i]}`);
+      }
     }
 
     catch (e) {
@@ -106,7 +108,7 @@
     }
 
   });
-  }
+
 
   /* Регистрация профиля 1 */
   document.getElementById('init_sub').addEventListener('click', function() {

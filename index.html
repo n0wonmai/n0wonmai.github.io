@@ -65,7 +65,7 @@
     try {
       var email = 'john_doe@somemail.eu';
       akPush.initSubscription({ email: email}); // ..показать форму подписки
-      setText('txt', `Профиль ${email} подписан`);
+      setText('txt', `Profile ${email} was subbed`);
     }
 
     catch (e) {
@@ -79,7 +79,7 @@
     try {
       var email = 'second_profile@mail.ru';
       akPush.initSubscription({ email: email}); // ..показать форму подписки
-      setText('txt', `Профиль ${email} подписан`);
+      setText('txt', `Profile ${email} was subbed`);
     }
 
     catch (e) {
@@ -93,7 +93,7 @@
     registrations = await navigator.serviceWorker.getRegistrations();
       for(let registration of registrations) {
           registration.unregister();
-          setText('txt', `Воркер ${registration.active.scriptURL} удален`);
+          setText('txt', `Worker ${registration.active.scriptURL} removed`);
       } 
   });
 
@@ -101,7 +101,7 @@
   document.getElementById('reset').addEventListener('click', async function() {
     let akp = AKPush;
     await akp.removeToken();
-    setText('txt', `Токен удален`);
+    setText('txt', `Token Removed`);
   });
 
 

@@ -151,17 +151,25 @@
         }
     }
     catch(e) {
-      
+      console.log('Ошибка удаления воркера');
+      alert(e);
     }
   });
 
   /* Сбросить токен */
   document.getElementById('reset').addEventListener('click', async function() {
     let akp = AKPush;
-    await akp.removeToken();
-    localStorage.clear();
-    console.log('Токен удален');
-    setText('txt', `Token Removed`);
+    try {
+      await akp.removeToken();
+      localStorage.clear();
+      console.log('Токен удален');
+      setText('txt', `Token Removed`);
+    }
+    catch(e) {
+      console.log('Ошибка удаления токена');
+      alert(e);
+    }
+
   });
 
 

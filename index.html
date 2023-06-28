@@ -75,7 +75,7 @@
   document.getElementById('init_sub_bunch_new_token').addEventListener('click', async function() {
     try {
       var akp = AKPush;
-      for ( var i = 0; i < 5; i++ ) {
+      for ( var i = 0; i < profileEmails.length; i++ ) {
         akPush.initSubscription({ email: profileEmails[i]}); // ..показать форму подписки
         console.log(`Запрошена подписка на email: ${profileEmails[i]}`);
         setText('txt', `Subscription on email: ${profileEmails[i]}`);
@@ -96,7 +96,7 @@
   /* Регистрация группы профилей c одним токеном */
   document.getElementById('init_sub_bunch').addEventListener('click', function() {
     try {
-      for ( var i = 0; i < 5; i++ ) {
+      for ( var i = 0; i < profileEmails.length; i++ ) {
         akPush.initSubscription({ email: profileEmails[i]}); // ..показать форму подписки
         console.log(`Запрошена подписка на email: ${profileEmails[i]}`);
         setText('txt', `Subscription on email: ${profileEmails[i]}`);

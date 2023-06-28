@@ -112,7 +112,7 @@
   });
 
   /* Обновление профиля 1 и создание нового */
-  document.getElementById('init_sub').addEventListener('click', function() {
+  document.getElementById('update_sub').addEventListener('click', function() {
     try {
       akPush.updateSubscription({ email: profileEmails[0]}, {_fname: "BIBA"}); // ..показать форму подписки
       console.log(`Запрошена подписка на email: ${profileEmails[0]}`);
@@ -120,7 +120,7 @@
 
       akPush.updateSubscription({ email: 'NewProfile@neeeeew.qwe'}, {_fname: "BOBA"}); // ..показать форму подписки
       console.log(`Запрошена подписка на email: NewProfile@neeeeew.qwe`);
-      setText('txt', `Subscription on email: ${profileEmails[0]}`);
+      setText('txt', `Subscription on email: NewProfile@neeeeew.qwe`);
     }
 
     catch (e) {

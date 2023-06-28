@@ -38,6 +38,7 @@
             <div class = "container__toolbox">
               <button type="button" id="init_sub" style = "margin-top: 10%;">Subscribe profile #1</button>
               <button type="button" id="init_sub_2" style = "margin-top: 10%;">Subscribe profile #2</button>
+              <button type="button" id="update_sub" style = "margin-top: 10%;">Update profile #1 and create NEW</button>
               <button type="button" id="init_sub_bunch" style = "margin-top: 10%;">Subscribe bunch profiles with one token</button>
               <button type="button" id="init_sub_bunch_new_token" style = "margin-top: 10%;">Subscribe bunch profiles with new tokens</button>
               <button type="button" id="reset" style = "margin-top: 10%;">Reset token</button>
@@ -76,7 +77,7 @@
     try {
       var akp = AKPush;
       for ( var i = 0; i < profileEmails.length; i++ ) {
-        akPush.initSubscription({ email: profileEmails[i]}); // ..показать форму подписки
+        await akPush.initSubscription({ email: profileEmails[i]}); // ..показать форму подписки
         console.log(`Запрошена подписка на email: ${profileEmails[i]}`);
         setText('txt', `Subscription on email: ${profileEmails[i]}`);
 
@@ -105,6 +106,24 @@
 
     catch (e) {
       console.log(`Подписка на email: ${profileEmails[i]} не удалась`);
+      alert(e);
+    }
+
+  });
+
+  /* Обновление профиля 1 и создание нового */
+  document.getElementById('init_sub').addEventListener('click', function() {
+    try {
+      akPush.updateSubscription({ email: profileEmails[0]}, {_fname: "BIBA"}); // ..показать форму подписки
+      console.log(`Запрошена подписка на email: ${profileEmails[0]}`);
+      setText('txt', `Subscription on email: ${profileEmails[0]}`);
+
+      akPush.updateSubscription({ email: 'NewProfile@neeeeew.qwe'}, {_fname: "BOBA"}); // ..показать форму подписки
+      console.log(`Запрошена подписка на email: NewProfile@neeeeew.qwe`);
+      setText('txt', `Subscription on email: ${profileEmails[0]}`);
+    }
+
+    catch (e) {
       alert(e);
     }
 

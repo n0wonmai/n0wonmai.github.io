@@ -200,6 +200,7 @@
       let response = await localforage.getItem(akPush.config.randomPrefix + 'current_token');
       await localforage.setItem(akPush.config.randomPrefix + 'current_token', response + ' ');
       setText('txt', `Token expired!`);
+      setTimeout(() => { window.location.reload() }, 1000);
     }
     catch(e) {
       console.log('Ошибка перезаписи токена');

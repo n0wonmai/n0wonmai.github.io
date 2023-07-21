@@ -208,6 +208,17 @@
     }
   });
 
+  /* Page reload */
+  document.getElementById('expire').addEventListener('click', async function() {
+    try {
+      setTimeout(() => { window.location.reload() }, 1000);
+    }
+    catch(e) {
+      console.log('Ошибка перезагрузки страницы');
+      alert(e);
+    }
+  });
+
 </script>
 <!-- pixel -->
         <script type="text/javascript">

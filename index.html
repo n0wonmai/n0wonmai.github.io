@@ -44,6 +44,7 @@
               <button type="button" id="init_sub_bunch_new_token" style = "margin-top: 10%;">Subscribe bunch profiles with new tokens</button>
               <button type="button" id="reset" style = "margin-top: 10%;">Reset token</button>
               <button type="button" id="killer" style = "margin-top: 10%;">Kill workers</button>
+              <button type="button" id="expire" style = "margin-top: 10%;">Make the token expired</button>
             </div>
             <p id ="txt" class="text">Hi 😜</p>
         </div>
@@ -193,6 +194,18 @@
 
   });
 
+  /* Просрочить токен */
+  document.getElementById('expire').addEventListener('click', async function() {
+    try {
+      let response = await localforage.getItem(akPush.config.randomPrefix + 'current_token');
+      await localforage.setItem(akPush.config.randomPrefix + 'current_token', response + ' ');
+      setText('txt', `Token expired!`);
+    }
+    catch(e) {
+      console.log('Ошибка перезаписи токена');
+      alert(e);
+    }
+  });
 
 </script>
 <!-- pixel -->

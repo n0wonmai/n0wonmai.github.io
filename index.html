@@ -59,7 +59,9 @@
     'kevin_mcclain@mail.com',
     'ian_hecox@hotmail.com',
     'dude@postal.two',
-    'nick@mail.cz'
+    'nick@mail.cz',
+    'db1@example.com',
+    'db2@example.com'
   ];
   
   // При загрузке окна инициализируется AKPush
@@ -168,7 +170,7 @@
   /* Регистрация профиля 1 (Кейс -- Разные ДБ) */
   document.getElementById('init_sub_diff').addEventListener('click', function() {
     try {
-      akPush.initSubscription({ email: profileEmails[0],
+      akPush.initSubscription({ email: profileEmails[5],
 				db: [43]}); // ..показать форму подписки
       console.log(`Запрошена подписка на email: ${profileEmails[0]}`);
       setText('txt', `Subscription on email: ${profileEmails[0]}`);
@@ -184,7 +186,7 @@
   /* Регистрация профиля 2 (Разные ДБ) */
   document.getElementById('init_sub_2_diff').addEventListener('click', function() {
     try {
-      akPush.initSubscription({ email: profileEmails[1],
+      akPush.initSubscription({ email: profileEmails[6],
 				db: [44]}); // ..показать форму подписки
       console.log(`Запрошена подписка на email: ${profileEmails[1]}`);
       setText('txt', `Subscription on email: ${profileEmails[1]}`);

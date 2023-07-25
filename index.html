@@ -167,17 +167,17 @@
 
   });
 
-  /* Регистрация профиля 1 (Кейс -- Разные ДБ) */
+  /* Регистрация профиля 1 (Разные ДБ) */
   document.getElementById('init_sub_diff').addEventListener('click', function() {
     try {
       akPush.initSubscription({ email: profileEmails[5],
 				db: [43]}); // ..показать форму подписки
-      console.log(`Запрошена подписка на email: ${profileEmails[0]}`);
-      setText('txt', `Subscription on email: ${profileEmails[0]}`);
+      console.log(`Запрошена подписка на email: ${profileEmails[5]}`);
+      setText('txt', `Subscription on email: ${profileEmails[5]}`);
     }
 
     catch (e) {
-      console.log(`Подписка на email: ${profileEmails[0]} не удалась`);
+      console.log(`Подписка на email: ${profileEmails[5]} не удалась`);
       alert(e);
     }
 
@@ -188,12 +188,12 @@
     try {
       akPush.initSubscription({ email: profileEmails[6],
 				db: [44]}); // ..показать форму подписки
-      console.log(`Запрошена подписка на email: ${profileEmails[1]}`);
-      setText('txt', `Subscription on email: ${profileEmails[1]}`);
+      console.log(`Запрошена подписка на email: ${profileEmails[5]}`);
+      setText('txt', `Subscription on email: ${profileEmails[5]}`);
     }
 
     catch (e) {
-      console.log(`Подписка на email: ${profileEmails[1]} не удалась`);
+      console.log(`Подписка на email: ${profileEmails[5]} не удалась`);
       alert(e);
     }
 

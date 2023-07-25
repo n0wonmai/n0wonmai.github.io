@@ -39,6 +39,8 @@
             <div class = "container__toolbox">
               <button type="button" id="init_sub" style = "margin-top: 10%;">Subscribe profile #1</button>
               <button type="button" id="init_sub_2" style = "margin-top: 10%;">Subscribe profile #2</button>
+              <button type="button" id="init_sub_diff" style = "margin-top: 10%;">Subscribe profile #1 (Diff DB)</button>
+              <button type="button" id="init_sub_2_diff" style = "margin-top: 10%;">Subscribe profile #2 (Diff DB)</button>
               <button type="button" id="update_sub" style = "margin-top: 10%;">Update profile #1 and create NEW</button>
               <button type="button" id="init_sub_bunch" style = "margin-top: 10%;">Subscribe bunch profiles with one token</button>
               <button type="button" id="init_sub_bunch_new_token" style = "margin-top: 10%;">Subscribe bunch profiles with new tokens</button>
@@ -152,6 +154,38 @@
   document.getElementById('init_sub_2').addEventListener('click', function() {
     try {
       akPush.initSubscription({ email: profileEmails[1]}); // ..показать форму подписки
+      console.log(`Запрошена подписка на email: ${profileEmails[1]}`);
+      setText('txt', `Subscription on email: ${profileEmails[1]}`);
+    }
+
+    catch (e) {
+      console.log(`Подписка на email: ${profileEmails[1]} не удалась`);
+      alert(e);
+    }
+
+  });
+
+  /* Регистрация профиля 1 */
+  document.getElementById('init_sub_diff').addEventListener('click', function() {
+    try {
+      akPush.initSubscription({ email: profileEmails[0],
+				db: 43}); // ..показать форму подписки
+      console.log(`Запрошена подписка на email: ${profileEmails[0]}`);
+      setText('txt', `Subscription on email: ${profileEmails[0]}`);
+    }
+
+    catch (e) {
+      console.log(`Подписка на email: ${profileEmails[0]} не удалась`);
+      alert(e);
+    }
+
+  });
+
+  /* Регистрация профиля 2 */
+  document.getElementById('init_sub_2_diff').addEventListener('click', function() {
+    try {
+      akPush.initSubscription({ email: profileEmails[1],
+				db: 44}); // ..показать форму подписки
       console.log(`Запрошена подписка на email: ${profileEmails[1]}`);
       setText('txt', `Subscription on email: ${profileEmails[1]}`);
     }

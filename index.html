@@ -235,7 +235,8 @@
   document.getElementById('expire').addEventListener('click', async function() {
     try {
       let response = await localforage.getItem(akPush.config.randomPrefix + 'current_token');
-      await localforage.setItem(akPush.config.randomPrefix + 'current_token', response + '_expired');
+      response = response.replace(/...$/,"xyz");
+      await localforage.setItem(akPush.config.randomPrefix + 'current_token', response);
       setText('txt', `Token expired!`);
     }
     catch(e) {

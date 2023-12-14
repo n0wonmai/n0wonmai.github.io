@@ -98,8 +98,8 @@ def test():
     i: int = 0
     while i < MAX_SEND_COUNT:
         i+=1
-        r = requests.post(url, data=json.dumps(data), headers=headers)
+        requests.post(url, data=json.dumps(data), headers=headers)
 
 
-if __name__ == 'main':
+if __name__ == "__main__":
     test()

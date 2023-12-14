@@ -12,6 +12,8 @@
         <link rel="apple-touch-icon" sizes="192x192" href="https://igor-egorov.dev.altkraft.com/695361968/1/642d6041c5255c487c271100/Favicon.png" />
         <link rel="apple-touch-startup-image" href="https://igor-egorov.dev.altkraft.com/695361968/1/642d6041c5255c487c271100/Favicon.png">
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.js"></script>
+
         <meta name="apple-mobile-web-app-title" content="WebPush App">
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -40,11 +42,15 @@
             <div class = "container__toolbox">
               <button type="button" id="init_sub" style = "margin-top: 10%;">Subscribe profile #1</button>
               <button type="button" id="init_sub_2" style = "margin-top: 10%;">Subscribe profile #2</button>
+              <button type="button" id="init_sub_diff" style = "margin-top: 10%;">Subscribe profile #1 (Diff DB)</button>
+              <button type="button" id="init_sub_2_diff" style = "margin-top: 10%;">Subscribe profile #2 (Diff DB)</button>
               <button type="button" id="update_sub" style = "margin-top: 10%;">Update profile #1 and create NEW</button>
               <button type="button" id="init_sub_bunch" style = "margin-top: 10%;">Subscribe bunch profiles with one token</button>
               <button type="button" id="init_sub_bunch_new_token" style = "margin-top: 10%;">Subscribe bunch profiles with new tokens</button>
               <button type="button" id="reset" style = "margin-top: 10%;">Reset token</button>
               <button type="button" id="killer" style = "margin-top: 10%;">Kill workers</button>
+              <button type="button" id="expire" style = "margin-top: 10%;">Make the token expired</button>
+              <button type="button" id="page-reload" style = "margin-top: 10%;">Reload the page</button>
             </div>
             <p id ="txt" class="text">Hi 😜</p>
         </div>
@@ -56,7 +62,9 @@
     'kevin_mcclain@mail.com',
     'ian_hecox@hotmail.com',
     'dude@postal.two',
-    'nick@mail.cz'
+    'nick@mail.cz',
+    'db1@example.com',
+    'db2@example.com'
   ];
   
   // При загрузке окна инициализируется AKPush
@@ -162,6 +170,38 @@
 
   });
 
+  /* Регистрация профиля 1 (Разные ДБ) */
+  document.getElementById('init_sub_diff').addEventListener('click', function() {
+    try {
+      akPush.initSubscription({ email: profileEmails[5],
+				db: [43]}); // ..показать форму подписки
+      console.log(`Запрошена подписка на email: ${profileEmails[5]}`);
+      setText('txt', `Subscription on email: ${profileEmails[5]}`);
+    }
+
+    catch (e) {
+      console.log(`Подписка на email: ${profileEmails[5]} не удалась`);
+      alert(e);
+    }
+
+  });
+
+  /* Регистрация профиля 2 (Разные ДБ) */
+  document.getElementById('init_sub_2_diff').addEventListener('click', function() {
+    try {
+      akPush.initSubscription({ email: profileEmails[6],
+				db: [44]}); // ..показать форму подписки
+      console.log(`Запрошена подписка на email: ${profileEmails[6]}`);
+      setText('txt', `Subscription on email: ${profileEmails[6]}`);
+    }
+
+    catch (e) {
+      console.log(`Подписка на email: ${profileEmails[6]} не удалась`);
+      alert(e);
+    }
+
+  });
+
   /* Удалить воркеры */
   document.getElementById('killer').addEventListener('click', async function() {
     try {
@@ -194,11 +234,35 @@
 
   });
 
+  /* Просрочить токен */
+  document.getElementById('expire').addEventListener('click', async function() {
+    try {
+      let response = await localforage.getItem(akPush.config.randomPrefix + 'current_token');
+      response = response.replace(/...$/,"xyz");
+      await localforage.setItem(akPush.config.randomPrefix + 'current_token', response);
+      setText('txt', `Token expired!`);
+    }
+    catch(e) {
+      console.log('Ошибка перезаписи токена');
+      alert(e);
+    }
+  });
+
+  /* Page reload */
+  document.getElementById('page-reload').addEventListener('click', async function() {
+    try {
+      setTimeout(() => { window.location.reload() }, 1000);
+    }
+    catch(e) {
+      console.log('Ошибка перезагрузки страницы');
+      alert(e);
+    }
+  });
 
 </script>
 <!-- pixel -->
         <script type="text/javascript">
-        !function(){var e={url:"https://pxl.igor-egorov.dev.altkraft.com/pixel?k=34FyFph%2BVuzFYrhPh7C10Nk7Jg3MJUl1m%2Fqui6fGQJa6XD9SM9jghQ%3D%3D&s=XZCMwL8NN%2B8%3D",goals:"",value:parseFloat("0"),timeout:parseInt("0"),after_scroll:JSON.parse("false"),auto_load:JSON.parse("true")},o=function(o,t,n,a){var d=[].concat(o).map(function(e){return encodeURIComponent(e)}).join(","),c=encodeURIComponent(String(t||0)),i=encodeURIComponent(n.matching_mode||""),r=encodeURIComponent(n.db_id||0),u=encodeURIComponent(JSON.stringify(n.match||{})),l=encodeURIComponent(JSON.stringify(n.update||{}));setTimeout(function(){(new Image).src=[e.url,"goals="+d,"value="+c,"db_id="+r,"mmode="+i,"match="+u,"update="+l].join("&")},a)},t=!1,n=function(){t||(t=!0,e.after_scroll?document.addEventListener("scroll",function(){(window.pageYOffset||document.documentElement.scrollTop>0)&&o(e.goals,e.value,{},e.timeout)},{once:true}):e.auto_load&&o(e.goals,e.value,{},e.timeout))};"complete"===document.readyState||"interactive"===document.readyState?n():window.addEventListener("load",n);window.ak_pixel_push=function(e,t,n,a,d,c){var i=[];Array.isArray(e)?i=e:i[0]=e,o(i,t,{match:n,update:a,matching_mode:d,db_id:c},0)}}();
+        !function(){var e={url:"https://pxl.igor-egorov.qa.altcraft.com/pixel?k=34FyFph%2BVuzFYrhPh7C10Nk7Jg3MJUl1m%2Fqui6fGQJa6XD9SM9jghQ%3D%3D&s=XZCMwL8NN%2B8%3D",goals:"",value:parseFloat("0"),timeout:parseInt("0"),after_scroll:JSON.parse("false"),auto_load:JSON.parse("true")},o=function(o,t,n,a){var d=[].concat(o).map(function(e){return encodeURIComponent(e)}).join(","),c=encodeURIComponent(String(t||0)),i=encodeURIComponent(n.matching_mode||""),r=encodeURIComponent(n.db_id||0),u=encodeURIComponent(JSON.stringify(n.match||{})),l=encodeURIComponent(JSON.stringify(n.update||{}));setTimeout(function(){(new Image).src=[e.url,"goals="+d,"value="+c,"db_id="+r,"mmode="+i,"match="+u,"update="+l].join("&")},a)},t=!1,n=function(){t||(t=!0,e.after_scroll?document.addEventListener("scroll",function(){(window.pageYOffset||document.documentElement.scrollTop>0)&&o(e.goals,e.value,{},e.timeout)},{once:true}):e.auto_load&&o(e.goals,e.value,{},e.timeout))};"complete"===document.readyState||"interactive"===document.readyState?n():window.addEventListener("load",n);window.ak_pixel_push=function(e,t,n,a,d,c){var i=[];Array.isArray(e)?i=e:i[0]=e,o(i,t,{match:n,update:a,matching_mode:d,db_id:c},0)}}();
         </script>
     </body>
 </html>

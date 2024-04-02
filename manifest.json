@@ -1,6 +1,5 @@
 {
   "permissions": [ "activeTab" ],
-  "name": "https://n0wonmai.github.io",
-  "short_name": "WPA",
+  "name": "http://1.ru",
   "display": "standalone"
 }

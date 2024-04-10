@@ -1,2 +1,4 @@
-# Testing web push application 
-New feature of iOS 16.4
+# Testing web push applications 
+- Android firebase
+- iOS APNS
+- Apple Safari

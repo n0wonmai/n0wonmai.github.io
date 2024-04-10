@@ -1,4 +1,4 @@
 # Testing web push applications 
-- Android firebase
-- iOS APNS
+- Android Firebase
 - Apple Safari
+- iOS APNS

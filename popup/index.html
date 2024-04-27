@@ -42,7 +42,16 @@
             </script>
             <script>
                 
-            acpopup('create', 'AP-79uLTJjMWawLiU23i');
+            acpopup('create', 'AP-79uLTJjMWawLiU23i',
+            {
+                matching_mode: 'email',
+                matching: {
+                    email: 'test@mail.ru',
+                    db_ids: [19]
+                },
+            }
+            
+            );
             acpopup('show', 'AP-79uLTJjMWawLiU23i');
         
             </script>

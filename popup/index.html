@@ -1,84 +1,116 @@
+
 <!DOCTYPE html>
-<html lang = "en">
+<html lang = "ru">
     <head>
-        <title>Popups!</title>
+        <title>Публикация попапов</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel= "shortcut icon" href= "../resources/favicon.png">
-        <link rel="stylesheet" href="../resources/styles.css" />
-        <meta property="og:site_name" content="WebPush App" />
+        <meta property="og:site_name" content="FormPublisher" />
+        
+        <link rel="shortcut icon" href="https://guides.altcraft.com/en/user-guide/en/img/favicon.svg">
         <link rel="mask-icon" sizes="any" href="https://igor-egorov.dev.altkraft.com/695361968/1/642d6041c5255c487c271100/Favicon.png" color="#FFF">
         <link rel="apple-touch-icon" sizes="192x192" href="https://igor-egorov.dev.altkraft.com/695361968/1/642d6041c5255c487c271100/Favicon.png" />
         <link rel="apple-touch-startup-image" href="https://igor-egorov.dev.altkraft.com/695361968/1/642d6041c5255c487c271100/Favicon.png">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.js"></script>
-        <meta name="apple-mobile-web-app-title" content="WebPush App">
+
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;1,100&display=swap');
+
+            html, body {
+                font: 14pt Arial;
+                margin: 0;
+                padding: 0;
+                color: white;
+                background: linear-gradient(270deg, #6128ca, #008170);
+                background-size: 400% 400%;
+                -webkit-animation: Root 36s ease infinite;
+                -moz-animation: Root 36s ease infinite;
+                animation: Root 36s ease infinite;
+                height: 100%;
+                display: flex;
+                flex: 1;
+            }
+            a {text-decoration: none; color: aquamarine;}
+            a:hover {text-decoration: none; color: rgb(29, 110, 83)}
+
+            #refresh {width: 150px; height: 35px; margin-top: 5%;}
+
+            iframe {
+                width: 100%;
+                height: 120%;
+                border: none;
+                -webkit-box-shadow: -1px 4px 11px 10px rgba(34, 60, 80, 0.51);
+                -moz-box-shadow: -1px 4px 11px 10px rgba(34, 60, 80, 0.51);
+                box-shadow: -1px 4px 11px 10px rgba(34, 60, 80, 0.51);
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                margin-top: 5%;
+            }
+
+            .container {
+                max-width: 100%;
+                width: 80%;
+                margin: 0 auto;
+                text-align: center;
+                height: auto;
+                font-family: 'Roboto Mono', monospace !important;
+                font-weight: 200;
+                font-size: 35pt;
+            }
+
+            @-webkit-keyframes Root {
+                0%{background-position:0% 50%}
+                50%{background-position:100% 50%}
+                100%{background-position:0% 50%}
+            }
+            @-moz-keyframes Root {
+                0%{background-position:0% 50%}
+                50%{background-position:100% 50%}
+                100%{background-position:0% 50%}
+            }
+            @keyframes Root {
+                0%{background-position:0% 50%}
+                50%{background-position:100% 50%}
+                100%{background-position:0% 50%}
+            }
+        </style>
     </head>
     <body>
+        <!-- Dynamic content-->
+        <script>
 
-        <div class = "container">
-            <p class = "subtitle">Popups!</p>   
-        </div>
+            var data = prompt('Вставьте скрипт контейнера');
+            console.log(`Embedded element: ${data}`);
 
-        <div class = "container" style = "margin-top: 5%;">
-           
-            
-        
-           
-        
-            <script>
-            
-                (function (popupFunc) {
-                       var script = document.createElement('script');
-                       var firstScript = document.getElementsByTagName('script')[0];
-                       window[popupFunc] = window[popupFunc] || function () {
-                           (window[popupFunc].actions = window[popupFunc].actions || []).push(arguments);
-                       };
-                       window[popupFunc].last_init = 1 * new Date()
-                       window['ACPopupFuncNamePlaceholder'] = popupFunc;
-                       script.async = true;
-                       script.src = 'https://pxl.egor-lukin.dev.altkraft.com' + '/popup/v1/js/popupLibrary.js';
-                       firstScript.parentNode.insertBefore(script, firstScript);
-                })('acpopup');
-           
-               </script>
-               <script>
-                   
-             acpopup('create', 'AP-79uLTJjMWawLiU23i');
-             acpopup('show', 'AP-79uLTJjMWawLiU23i');
-           
-               </script>
-           
-           <script>
-               
-         acpopup('create', 'AP-79uLTJjMWawLiU23i');
-         acpopup('show', 'AP-79uLTJjMWawLiU23i');
-       
-           </script>
-       
-           
-       
-            <script>
+            (function showFrame()
+            {   
+                // Find body
+                const body = document.querySelector('body');
+
+                // Create container
+                const container = document.createElement('div');
+                container.setAttribute('class', 'container');
+                body.appendChild(container);
+
+                // Create title
+                const title = document.createElement('p');
+                title.innerText = 'Публикация попапа';
+                container.appendChild(title);
+
+                // Create iframe
+                const iframe = document.createElement('iframe');
+                iframe.setAttribute('id', 'frame');
+                iframe.setAttribute('srcdoc', `${data}`);
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('scrolling', 'auto');
+                iframe.setAttribute('style', 'height: calc(100% - 1px)');
+                container.appendChild(iframe);
                 
-            acpopup('create', 'AP-79uLTJjMWawLiU23i',
-            {
-                matching_mode: 'email',
-                matching: {
-                    email: 'test@mail.ru',
-                    db_ids: [19]
-                },
-            }
-            
-            );
-            acpopup('show', 'AP-79uLTJjMWawLiU23i');
-        
-            </script>
-       
-        </div>
-
+            })();
+        </script>
     </body>
-
-
 </html>

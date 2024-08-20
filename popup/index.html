@@ -82,27 +82,20 @@
     <body>
         
         <script>
-            
-            (function (popupFunc) {
-                   var script = document.createElement('script');
-                   var firstScript = document.getElementsByTagName('script')[0];
-                   var popupFuncName = popupFunc !== 'acpopup' ? '?f=' + popupFunc : '';
-                   window[popupFunc] = window[popupFunc] || function () {
-                       (window[popupFunc].actions = window[popupFunc].actions || []).push(arguments);
-                   };
-                   window[popupFunc].last_init = 1 * new Date()
-                   script.async = true;
-                   script.src = 'https://pxl.julia-popova.qa.altcraft.com' + '/popup/v1/js/popupLibrary.js' + popupFuncName;
-                   firstScript.parentNode.insertBefore(script, firstScript);
-            })('acpopup');
-       
-           </script>
-           <script>
-               
-         acpopup('create', 'AP-d1Biti3YrKaLx5P5');
-         acpopup('show', 'AP-d1Biti3YrKaLx5P5');
-       
-           </script>
+            (function (window, document, dataLayerName, containerID) {
+                window[dataLayerName] = window[dataLayerName] || [];
+                window[dataLayerName].push({ 'start': new Date().getTime(), event: 'actm-js' });
+                var firstScript = document.getElementsByTagName('script')[0];
+                var script = document.createElement('script');
+                var dl = dataLayerName !== 'acDataLayer' ? '&l=' + dataLayerName : '';
+                script.async = true;
+                script.src = 'https://pxl.julia-popova.qa.altcraft.com/actm/js/actm.js?id=' + containerID + dl;
+                script.type = 'module';
+                if (firstScript && firstScript.parentNode) {
+                    firstScript.parentNode.insertBefore(script, firstScript);
+                }
+            }(window, document, 'acDataLayer', 'ATM-9xYuCSTfHkQS0Rkl6'));
+        </script>
        
     </body>
 </html>

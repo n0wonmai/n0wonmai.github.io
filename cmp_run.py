@@ -1,6 +1,7 @@
 import json
 import requests
 
+
 MAX_SEND_COUNT = 100
 
 def test():

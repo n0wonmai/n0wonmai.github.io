@@ -139,20 +139,17 @@
             script.src = 'https://pxl-gleb-kabizulov.qa.altcraft.com' + '/popup/v1/js/popupLibrary.js' + popupFuncName;
             firstScript.parentNode.insertBefore(script, firstScript);
      })('acpopup');
-     acDataLayer.push({
-      matching: {
-      matching_mode: "email",
-      matching: { email: "gleb.kabizulov@altcraft.com", db_ids: [1] },
-  },
 });
-
-        
-
     </script>
     <script>
-        
-  acpopup('create', 'AP-7isYr8ibEQroPVDW3');
-  acpopup('show', 'AP-7isYr8ibEQroPVDW3');
+    acpopup('create', 'AP-7isYr8ibEQroPVDW3', {
+         matching_mode: 'email',
+         matching: {
+            email: 'gleb.kabizulov@altcraft.com',
+            db_ids: [1]
+        },
+    });
+    acpopup('show', 'AP-7isYr8ibEQroPVDW3');   
 
     </script>
 </body>

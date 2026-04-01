@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Cold Poison - Donate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="./assets/styles/styles.css" rel="stylesheet">
+    <link href="./assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="./assets/images/favicon.ico" rel="shortcut icon" sizes="32x32">
+    <link href="./assets/images/favicon.ico" rel="shortcut icon" sizes="48x48">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="bg-gradient"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h1>Cold Poison | Donations Page</h1>
+            </div>
+            <div class="tagline">Ваши донаты помогают нам поддерживать и развивать сервер. Спасибо.</div>
+        </div>
+        <div class="instruction-card">
+            <h3>📌 Как покупать?</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>Напишите <code>!myid</code> в чате сервера KF2</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>Скопируйте свой <strong>Player ID</strong></div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>Выберите тариф и оплатите через DonatePay</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>Ожидайте покупку в течение 24 часов</div>
+                </div>
+            </div>
+        </div>
+        <div class="main-grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon">💳</div>
+                    <div>
+                        <h2>Оплата</h2>
+                        <p>Выберите сумму и оплатите любым удобным способом</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="donate-widget-wrapper">
+                       <iframe id="donateWidget" src="https://widget.donatepay.ru/widgets/page/f89fddcd6027e7efae9228bb5ee8515db2a6bc9180ca1a6d4bd6e8cfab592259?widget_id=7558499&sum=200" width="510" height="220" frameBorder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon">🎁</div>
+                    <div>
+                        <h2>Товары</h2>
+                        <p>Выберите, что конкретно хотите приобрести</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="pricing-grid" id="pricingGrid">
+                        <div class="price-card" data-item="100 Cash" data-price="200" data-cash="100">
+                            <div class="price-icon">💰</div>
+                            <div class="price-name">100 Cash</div>
+                            <div class="price-value">200 ₽</div>
+                        </div>
+                        <div class="price-card" data-item="250 Cash + 50 Bonus" data-price="400" data-cash="300">
+                            <div class="price-icon">💰💰</div>
+                            <div class="price-name">250 + 50 Cash</div>
+                            <div class="price-value">400 ₽</div>
+                            <div class="price-bonus">+50 бонусом</div>
+                        </div>
+                        <div class="price-card" data-item="500 Cash + 100 Bonus" data-price="800" data-cash="600">
+                            <div class="price-icon">💰💰💰</div>
+                            <div class="price-name">500 + 100 Cash</div>
+                            <div class="price-value">800 ₽</div>
+                            <div class="price-bonus">+100 бонусом</div>
+                        </div>
+                        <div class="price-card" data-item="VIP 30 дней" data-price="1000" data-vip="30">
+                            <div class="price-icon">👑</div>
+                            <div class="price-name">VIP 30 дней</div>
+                            <div class="price-value">1000 ₽</div>
+                            <div class="price-bonus">Эксклюзив</div>
+                        </div>
+                        <div class="price-card" data-item="VIP 90 дней" data-price="2500" data-vip="90">
+                            <div class="price-icon">👑👑👑</div>
+                            <div class="price-name">VIP 90 дней</div>
+                            <div class="price-value">2500 ₽</div>
+                            <div class="price-bonus">Лучшая цена</div>
+                        </div>
+                    </div>
+                    <form id="donationForm">
+                        <div class="form-group">
+                            <label>Ваш Player ID *</label>
+                            <input type="text" id="playerId" placeholder="Введите ID из команды !myid" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Discord (для связи)</label>
+                            <input type="text" id="contact" placeholder="@username или никнейм">
+                        </div>
+                    </form>
+
+                    <!-- Блок с сообщением для копирования -->
+                    <div class="message-block" id="messageBlock" style="display: none;">
+                        <div class="message-header">
+                            📋 <span>Скопируйте это сообщение и вставьте в комментарий к платежу:</span>
+                        </div>
+                        <textarea id="paymentMessage" class="message-textarea" rows="4" readonly></textarea>
+                        <button onclick="copyPaymentMessage()" class="btn-copy">📋 Копировать сообщение</button>
+                    </div>
+                    
+                    <div id="result" class="result"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>После оплаты товар придет в течение 24 часов.</p>
+            <p style="margin-top: 10px; font-size: 11px;">Cold Poison | Killing Floor 2</p>
+        </div>
+    </div>
+
+    <script>
+        // Параметры виджета
+        const WIDGET_BASE_URL = 'https://widget.donatepay.ru/widgets/page/f89fddcd6027e7efae9228bb5ee8515db2a6bc9180ca1a6d4bd6e8cfab592259';
+        const WIDGET_ID = '7558499';
+        
+        // Элементы
+        const donateWidget = document.getElementById('donateWidget');
+        const priceCards = document.querySelectorAll('.price-card');
+        const playerIdInput = document.getElementById('playerId');
+        const contactInput = document.getElementById('contact');
+        const messageBlock = document.getElementById('messageBlock');
+        const paymentMessageTextarea = document.getElementById('paymentMessage');
+        
+        let selectedCard = null;
+        let currentItem = '';
+        let currentPrice = 0;
+        
+        // Обновление виджета DonatePay с новой суммой
+        function updateDonateWidget(amount) {
+            const newUrl = `${WIDGET_BASE_URL}?widget_id=${WIDGET_ID}&sum=${amount}`;
+            donateWidget.src = newUrl;
+            
+            // Визуальный фидбек
+            donateWidget.style.opacity = '0.5';
+            setTimeout(() => {
+                donateWidget.style.opacity = '1';
+            }, 100);
+        }
+        
+        // Формирование сообщения для копирования
+        function generatePaymentMessage() {
+            const playerId = playerIdInput.value.trim();
+            const contact = contactInput.value.trim();
+            
+            if (!currentItem || !currentPrice) {
+                return null;
+            }
+            
+            const timestamp = new Date().toLocaleString('ru-RU');
+            
+            let message = `🔔 НОВЫЙ ДОНАТ | Cold Poison\n\n`;
+            message += `🎮 Player ID: ${playerId || 'НЕ УКАЗАН'}\n`;
+            message += `💰 Товар: ${currentItem}\n`;
+            message += `💵 Сумма: ${currentPrice} ₽\n`;
+            message += `📞 Discord: ${contact || 'не указан'}\n`;
+            message += `📅 Дата: ${timestamp}\n`;
+            message += `🔗 Сайт: ${window.location.href}`;
+            
+            return message;
+        }
+        
+        // Обновление текстового поля
+        function updatePaymentMessage() {
+            const message = generatePaymentMessage();
+            
+            if (message && playerIdInput.value.trim()) {
+                paymentMessageTextarea.value = message;
+                messageBlock.style.display = 'block';
+                
+                // Анимация появления
+                messageBlock.style.animation = 'none';
+                setTimeout(() => {
+                    messageBlock.style.animation = 'fadeIn 0.3s ease';
+                }, 10);
+            } else if (playerIdInput.value.trim() && currentItem) {
+                paymentMessageTextarea.value = message;
+                messageBlock.style.display = 'block';
+            } else {
+                messageBlock.style.display = 'none';
+            }
+        }
+        
+        // Копирование сообщения
+        function copyPaymentMessage() {
+            const message = paymentMessageTextarea.value;
+            if (!message) return;
+            
+            navigator.clipboard.writeText(message).then(() => {
+                showResult('✅ Сообщение скопировано! Вставьте его в комментарий к платежу', 'success');
+                
+                // Визуальный фидбек на кнопке
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Скопировано!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            }).catch(() => {
+                // Fallback для старых браузеров
+                const textarea = document.createElement('textarea');
+                textarea.value = message;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showResult('✅ Сообщение скопировано!', 'success');
+            });
+        }
+        
+        // Выбор тарифа
+        priceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Убираем выделение
+                priceCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedCard = card;
+                
+                // Получаем данные
+                currentItem = card.dataset.item;
+                currentPrice = parseInt(card.dataset.price);
+                
+                // Обновляем виджет
+                updateDonateWidget(currentPrice);
+                
+                // Обновляем сообщение
+                updatePaymentMessage();
+                
+                // Визуальный фидбек
+                card.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // Отслеживаем изменения в полях ввода
+        playerIdInput.addEventListener('input', () => {
+            updatePaymentMessage();
+        });
+        
+        contactInput.addEventListener('input', () => {
+            updatePaymentMessage();
+        });
+        
+        // Функция показа результата
+        function showResult(message, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = message;
+            resultDiv.className = `result ${type}`;
+            resultDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                resultDiv.style.opacity = '0';
+                setTimeout(() => {
+                    resultDiv.style.display = 'none';
+                    resultDiv.style.opacity = '1';
+                }, 300);
+            }, 5000);
+        }
+        
+        // Создание частиц
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 2;
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 10;
+                const left = Math.random() * 100;
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = left + '%';
+                particle.style.animationDuration = duration + 's';
+                particle.style.animationDelay = delay + 's';
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Инициализация
+        createParticles();
+        
+        // Автовыбор первого тарифа
+        setTimeout(() => {
+            if (priceCards.length > 0 && !selectedCard) {
+                priceCards[0].click();
+            }
+        }, 500);
+        
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight - 100;
+                if (isVisible) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

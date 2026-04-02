@@ -420,6 +420,24 @@ body {
     animation: glow 2s infinite;
 }
 
+.btn-copy {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #00ff64, #00cc50);
+    border: none;
+    border-radius: 10px;
+    color: #0a0a0f;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-copy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 100, 0.3);
+}
+
 @keyframes glow {
     0%, 100% { text-shadow: 0 0 5px gold; }
     50% { text-shadow: 0 0 20px gold; }

@@ -130,23 +130,22 @@
     </div>
 
     <script>
-        // Параметры виджета
         const WIDGET_BASE_URL = 'https://widget.donatepay.ru/widgets/page/f89fddcd6027e7efae9228bb5ee8515db2a6bc9180ca1a6d4bd6e8cfab592259';
         const WIDGET_ID = '7558499';
         
-        // Элементы
         const donateWidget = document.getElementById('donateWidget');
         const priceCards = document.querySelectorAll('.price-card');
         const playerIdInput = document.getElementById('playerId');
         const contactInput = document.getElementById('contact');
         const messageBlock = document.getElementById('messageBlock');
         const paymentMessageTextarea = document.getElementById('paymentMessage');
+        const selectedItemHidden = document.getElementById('selectedItem');
+        const selectedPriceHidden = document.getElementById('selectedPrice');
         
         let selectedCard = null;
         let currentItem = '';
         let currentPrice = 0;
         
-        // Обновление виджета DonatePay с новой суммой
         function updateDonateWidget(amount) {
             const newUrl = `${WIDGET_BASE_URL}?widget_id=${WIDGET_ID}&sum=${amount}`;
             donateWidget.src = newUrl;
@@ -182,18 +181,18 @@
         
         // Обновление текстового поля
         function updatePaymentMessage() {
+            const playerId = playerIdInput.value.trim();
             const message = generatePaymentMessage();
             
-            if (message && playerIdInput.value.trim()) {
+            if (message && playerId) {
                 paymentMessageTextarea.value = message;
                 messageBlock.style.display = 'block';
                 
-                // Анимация появления
                 messageBlock.style.animation = 'none';
                 setTimeout(() => {
                     messageBlock.style.animation = 'fadeIn 0.3s ease';
                 }, 10);
-            } else if (playerIdInput.value.trim() && currentItem) {
+            } else if (currentItem && playerId) {
                 paymentMessageTextarea.value = message;
                 messageBlock.style.display = 'block';
             } else {
@@ -209,15 +208,13 @@
             navigator.clipboard.writeText(message).then(() => {
                 showResult('✅ Сообщение скопировано! Вставьте его в комментарий к платежу', 'success');
                 
-                // Визуальный фидбек на кнопке
-                const btn = event.target;
+                const btn = document.querySelector('.btn-copy');
                 const originalText = btn.textContent;
                 btn.textContent = '✅ Скопировано!';
                 setTimeout(() => {
                     btn.textContent = originalText;
                 }, 2000);
             }).catch(() => {
-                // Fallback для старых браузеров
                 const textarea = document.createElement('textarea');
                 textarea.value = message;
                 document.body.appendChild(textarea);
@@ -228,25 +225,23 @@
             });
         }
         
-        // Выбор тарифа
+        // Заменить обработчик выбора тарифа:
         priceCards.forEach(card => {
             card.addEventListener('click', () => {
-                // Убираем выделение
                 priceCards.forEach(c => c.classList.remove('selected'));
                 card.classList.add('selected');
                 selectedCard = card;
                 
-                // Получаем данные
                 currentItem = card.dataset.item;
                 currentPrice = parseInt(card.dataset.price);
                 
-                // Обновляем виджет
-                updateDonateWidget(currentPrice);
+                // Сохраняем в скрытые поля
+                selectedItemHidden.value = currentItem;
+                selectedPriceHidden.value = currentPrice;
                 
-                // Обновляем сообщение
+                updateDonateWidget(currentPrice);
                 updatePaymentMessage();
                 
-                // Визуальный фидбек
                 card.style.transform = 'scale(0.98)';
                 setTimeout(() => {
                     card.style.transform = '';

@@ -110,15 +110,15 @@
                             <label>Discord (для связи)</label>
                             <input type="text" id="contact" placeholder="@username или никнейм">
                         </div>
-                    </form>
-                    <div class="message-block" id="messageBlock" style="display: none;">
+
+                        <div class="message-block" id="messageBlock" style="display: none;">
                         <div class="message-header">
                             📋 <span>Скопируйте это сообщение и вставьте в комментарий к платежу:</span>
                         </div>
                         <textarea id="paymentMessage" class="message-textarea" rows="4" readonly></textarea>
                         <button onclick="copyPaymentMessage()" class="btn-copy">📋 Копировать сообщение</button>
                     </div>
-                    
+                    </form>
                     <div id="result" class="result"></div>
                 </div>
             </div>
@@ -146,8 +146,15 @@
         let currentItem = '';
         let currentPrice = 0;
         
+        // Обновление виджета DonatePay с новой суммой
         function updateDonateWidget(amount) {
+            // Проверяем, что сумма передана и это число
+            if (!amount || isNaN(amount)) return;
+            
+            // Формируем новый URL с обновленной суммой
             const newUrl = `${WIDGET_BASE_URL}?widget_id=${WIDGET_ID}&sum=${amount}`;
+            
+            // Обновляем iframe
             donateWidget.src = newUrl;
             
             // Визуальный фидбек
@@ -156,7 +163,7 @@
                 donateWidget.style.opacity = '1';
             }, 100);
         }
-        
+
         // Формирование сообщения для копирования
         function generatePaymentMessage() {
             const playerId = playerIdInput.value.trim();

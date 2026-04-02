@@ -37,7 +37,7 @@
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <div>Выберите тариф и оплатите через DonatePay</div>
+                    <div>Выберите товар и оплатите через DonatePay, прикрепив сообщение</div>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
@@ -65,7 +65,7 @@
                     <div class="icon">🎁</div>
                     <div>
                         <h2>Товары</h2>
-                        <p>Выберите, что конкретно хотите приобрести</p>
+                        <p>Выберите товар для покупки</p>
                     </div>
                 </div>
                 <div class="card-content">
@@ -75,28 +75,28 @@
                             <div class="price-name">100 Cash</div>
                             <div class="price-value">200 ₽</div>
                         </div>
-                        <div class="price-card" data-item="250 Cash + 50 Bonus" data-price="400" data-cash="300">
+                        <div class="price-card" data-item="250 Cash + 50 Bonus" data-price="800" data-cash="700">
                             <div class="price-icon">💰💰</div>
-                            <div class="price-name">250 + 50 Cash</div>
-                            <div class="price-value">400 ₽</div>
-                            <div class="price-bonus">+50 бонусом</div>
-                        </div>
-                        <div class="price-card" data-item="500 Cash + 100 Bonus" data-price="800" data-cash="600">
-                            <div class="price-icon">💰💰💰</div>
-                            <div class="price-name">500 + 100 Cash</div>
+                            <div class="price-name">500 + 200 Cash</div>
                             <div class="price-value">800 ₽</div>
-                            <div class="price-bonus">+100 бонусом</div>
+                            <div class="price-bonus">+200 бонусом</div>
                         </div>
-                        <div class="price-card" data-item="VIP 30 дней" data-price="1000" data-vip="30">
+                        <div class="price-card" data-item="500 Cash + 100 Bonus" data-price="1500" data-cash="1500">
+                            <div class="price-icon">💰💰💰</div>
+                            <div class="price-name">1000 + 500 Cash</div>
+                            <div class="price-value">1500 ₽</div>
+                            <div class="price-bonus">+500 бонусом</div>
+                        </div>
+                        <div class="price-card" data-item="VIP 30 дней" data-price="200" data-vip="30">
                             <div class="price-icon">👑</div>
                             <div class="price-name">VIP 30 дней</div>
-                            <div class="price-value">1000 ₽</div>
+                            <div class="price-value">200 ₽</div>
                             <div class="price-bonus">Эксклюзив</div>
                         </div>
-                        <div class="price-card" data-item="VIP 90 дней" data-price="2500" data-vip="90">
+                        <div class="price-card" data-item="VIP 90 дней" data-price="400" data-vip="90">
                             <div class="price-icon">👑👑👑</div>
                             <div class="price-name">VIP 90 дней</div>
-                            <div class="price-value">2500 ₽</div>
+                            <div class="price-value">400 ₽</div>
                             <div class="price-bonus">Лучшая цена</div>
                         </div>
                     </div>
@@ -110,13 +110,14 @@
                             <label>Discord (для связи)</label>
                             <input type="text" id="contact" placeholder="@username или никнейм">
                         </div>
-
+                        <input type="hidden" id="selectedItem" value="">
+                        <input type="hidden" id="selectedPrice" value="">
                         <div class="message-block" id="messageBlock" style="display: none;">
                         <div class="message-header">
                             <span><label class="message-copy-label">Скопируйте это сообщение и вставьте в комментарий к платежу:</label></span>
                         </div>
                         <textarea id="paymentMessage" class="message-textarea" rows="4" readonly></textarea>
-                        <button onclick="copyPaymentMessage()" class="btn">📋 Копировать сообщение</button>
+                        <button type="button" onclick="copyPaymentMessage()" class="btn" style="margin-top: 5%;">Копировать</button>
                     </div>
                     </form>
                     <div id="result" class="result"></div>
@@ -132,7 +133,6 @@
     <script>
         const WIDGET_BASE_URL = 'https://widget.donatepay.ru/widgets/page/f89fddcd6027e7efae9228bb5ee8515db2a6bc9180ca1a6d4bd6e8cfab592259';
         const WIDGET_ID = '7558499';
-        
         const donateWidget = document.getElementById('donateWidget');
         const priceCards = document.querySelectorAll('.price-card');
         const playerIdInput = document.getElementById('playerId');
@@ -175,13 +175,12 @@
             
             const timestamp = new Date().toLocaleString('ru-RU');
             
-            let message = `🔔 НОВЫЙ ДОНАТ | Cold Poison\n\n`;
-            message += `🎮 Player ID: ${playerId || 'НЕ УКАЗАН'}\n`;
-            message += `💰 Товар: ${currentItem}\n`;
-            message += `💵 Сумма: ${currentPrice} ₽\n`;
-            message += `📞 Discord: ${contact || 'не указан'}\n`;
-            message += `📅 Дата: ${timestamp}\n`;
-            message += `🔗 Сайт: ${window.location.href}`;
+            let message = ` Покупка на сервере Cold Poison\n\n`;
+            message += ` Player ID: ${playerId || 'НЕ УКАЗАН'}\n`;
+            message += ` Товар: ${currentItem}\n`;
+            message += ` Сумма: ${currentPrice} ₽\n`;
+            message += ` Discord: ${contact || 'не указан'}\n`;
+            message += ` Дата: ${timestamp}\n`;
             
             return message;
         }
@@ -191,7 +190,8 @@
             const playerId = playerIdInput.value.trim();
             const message = generatePaymentMessage();
             
-            if (message && playerId) {
+            // Показываем блок если есть и товар, и Player ID
+            if (message && currentItem && currentPrice && playerId) {
                 paymentMessageTextarea.value = message;
                 messageBlock.style.display = 'block';
                 
@@ -199,9 +199,6 @@
                 setTimeout(() => {
                     messageBlock.style.animation = 'fadeIn 0.3s ease';
                 }, 10);
-            } else if (currentItem && playerId) {
-                paymentMessageTextarea.value = message;
-                messageBlock.style.display = 'block';
             } else {
                 messageBlock.style.display = 'none';
             }
@@ -210,17 +207,23 @@
         // Копирование сообщения
         function copyPaymentMessage() {
             const message = paymentMessageTextarea.value;
-            if (!message) return;
+            if (!message) {
+                showResult('❌ Нет сообщения для копирования', 'error');
+                return;
+            }
             
             navigator.clipboard.writeText(message).then(() => {
-                showResult('✅ Сообщение скопировано! Вставьте его в комментарий к платежу', 'success');
+                showResult('Сообщение скопировано! Вставьте его в комментарий к платежу', 'success');
                 
-                const btn = document.querySelector('.btn-copy');
-                const originalText = btn.textContent;
-                btn.textContent = '✅ Скопировано!';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                }, 2000);
+                // Находим кнопку правильно
+                const btn = document.querySelector('#messageBlock .btn');
+                if (btn) {
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Скопировано!';
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                    }, 2000);
+                }
             }).catch(() => {
                 const textarea = document.createElement('textarea');
                 textarea.value = message;
@@ -228,7 +231,7 @@
                 textarea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textarea);
-                showResult('✅ Сообщение скопировано!', 'success');
+                showResult('Сообщение скопировано!', 'success');
             });
         }
         
@@ -242,9 +245,12 @@
                 currentItem = card.dataset.item;
                 currentPrice = parseInt(card.dataset.price);
                 
+                // Отладка
+                console.log('Selected:', currentItem, currentPrice);
+                
                 // Сохраняем в скрытые поля
-                selectedItemHidden.value = currentItem;
-                selectedPriceHidden.value = currentPrice;
+                if (selectedItemHidden) selectedItemHidden.value = currentItem;
+                if (selectedPriceHidden) selectedPriceHidden.value = currentPrice;
                 
                 updateDonateWidget(currentPrice);
                 updatePaymentMessage();

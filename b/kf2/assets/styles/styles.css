@@ -18,7 +18,14 @@ textarea {
     height: 200px;
     max-width: 500px;
     max-height: 300px;
-    padding-top: 20px;
+    padding: 14px 16px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    font-family: inherit;
 }
 
 .bg-animation {
@@ -145,25 +152,33 @@ textarea {
 
 .step {
     flex: 1;
-    min-width: 180px;
+    min-width: 160px;
     display: flex;
     align-items: center;
     gap: 12px;
     color: #ccc;
     font-size: 14px;
+    line-height: 1.4;
 }
 
 .step-number {
     width: 32px;
+    min-width: 32px;
+    max-width: 32px;  /* Добавить */
     height: 32px;
+    min-height: 32px;
+    max-height: 32px;
     background: rgba(233, 69, 96, 0.2);
     border-radius: 50%;
-    display: flex;
+    display: inline-flex;  /* Изменить с flex */
     align-items: center;
     justify-content: center;
     font-weight: bold;
     color: #e94560;
     border: 1px solid rgba(233, 69, 96, 0.5);
+    flex-shrink: 0;
+    flex-grow: 0;  /* Добавить - запрещает растяжение */
+    box-sizing: border-box;
 }
 
 .step code {
@@ -236,7 +251,6 @@ textarea {
     border-radius: 16px;
     padding: 20px;
     text-align: center;
-    height: auto;
 }
 
 .donate-widget-wrapper iframe {

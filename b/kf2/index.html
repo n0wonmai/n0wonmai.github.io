@@ -1,14 +1,353 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Cold Poison - Donate</title>
+    <title>Cold Poison - Help Center</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="./assets/styles/styles.css" rel="stylesheet">
-    <link href="./assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="./assets/images/favicon.ico" rel="shortcut icon" sizes="32x32">
-    <link href="./assets/images/favicon.ico" rel="shortcut icon" sizes="48x48">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(233, 69, 96, 0.15) 0%, rgba(10, 10, 15, 0.95) 70%);
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(233, 69, 96, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 15px 35px;
+            border-radius: 100px;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            font-size: 48px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .logo h1 {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #e94560 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            color: #888;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .nav-link {
+            color: #aaa;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(233, 69, 96, 0.2);
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(233, 69, 96, 0.15);
+            border-color: #e94560;
+            color: #e94560;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.8) 0%, rgba(15, 15, 20, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            border: 1px solid rgba(233, 69, 96, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(233, 69, 96, 0.5);
+        }
+
+        .card-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-header .icon {
+            font-size: 32px;
+        }
+
+        .card-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .card-header p {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .card-content {
+            padding: 25px 30px;
+        }
+
+        .commands-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .command-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 12px 16px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            border-left: 3px solid #e94560;
+            transition: all 0.3s ease;
+        }
+
+        .command-item:hover {
+            background: rgba(233, 69, 96, 0.1);
+            transform: translateX(5px);
+        }
+
+        .command-code {
+            font-family: 'Courier New', monospace;
+            background: rgba(233, 69, 96, 0.2);
+            padding: 4px 10px;
+            border-radius: 8px;
+            color: #e94560;
+            font-weight: 600;
+            font-size: 14px;
+            min-width: 120px;
+        }
+
+        .command-desc {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .vip-features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .vip-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.02));
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .vip-feature:hover {
+            transform: translateX(5px);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .vip-feature-icon {
+            font-size: 28px;
+        }
+
+        .vip-feature-text {
+            color: #ddd;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .vip-feature-text strong {
+            color: gold;
+        }
+
+        .vip-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, gold, #ffaa00);
+            color: #0a0a0f;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer a {
+            color: #e94560;
+            text-decoration: none;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+
+        .help-tip {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid rgba(233, 69, 96, 0.2);
+        }
+
+        .help-tip p {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .help-tip a {
+            color: #e94560;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     <div class="bg-animation">
@@ -19,255 +358,124 @@
     <div class="container">
         <div class="header">
             <div class="logo">
-                <div class="logo-icon"></div>
-                <h1>Cold Poison | Donations Page</h1>
+                <div class="logo-icon">❄️</div>
+                <h1>Cold Poison | Help Center</h1>
             </div>
-            <div class="tagline">Ваши донаты помогают нам поддерживать и развивать сервер. Спасибо.</div>
-        </div>
-        <div class="instruction-card">
-            <h3>📌 Как покупать?</h3>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div>Напишите <code>!myid</code> в чате сервера KF2</div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div>Скопируйте свой <strong>Player ID</strong></div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div>Выберите товар и оплатите через DonatePay, прикрепив сообщение</div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div>Ожидайте покупку в течение 24 часов</div>
-                </div>
+            <div class="tagline">Your guide to server commands and VIP benefits</div>
+            <div class="nav-links">
+                <a href="donate.html" class="nav-link">💰 Donate</a>
+                <a href="help.html" class="nav-link active">❓ Help Center</a>
             </div>
         </div>
+
         <div class="main-grid">
+            <!-- Commands Card -->
             <div class="card">
                 <div class="card-header">
-                    <div class="icon">💳</div>
+                    <div class="icon">⌨️</div>
                     <div>
-                        <h2>Оплата</h2>
-                        <p>Выберите сумму и оплатите любым удобным способом</p>
+                        <h2>Server Commands</h2>
+                        <p>Type these commands in the KF2 server chat</p>
                     </div>
                 </div>
                 <div class="card-content">
-                    <div class="donate-widget-wrapper">
-                       <iframe id="donateWidget" src="https://widget.donatepay.ru/widgets/page/f89fddcd6027e7efae9228bb5ee8515db2a6bc9180ca1a6d4bd6e8cfab592259?widget_id=7558499&sum=200" width="510" height="240" frameBorder="0"></iframe>
+                    <div class="commands-list">
+                        <div class="command-item">
+                            <span class="command-code">!myid</span>
+                            <span class="command-desc">Shows your Player ID</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!lk</span>
+                            <span class="command-desc">Shows your personal player information</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!store</span>
+                            <span class="command-desc">Opens the Orgelbox store</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!skins</span>
+                            <span class="command-desc">Shows all skins you own</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!weapons</span>
+                            <span class="command-desc">Shows all weapons you own</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!equip &lt;id&gt;</span>
+                            <span class="command-desc">Equip a weapon from your list</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!skin &lt;id&gt;</span>
+                            <span class="command-desc">Apply a skin to your weapon</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!clean</span>
+                            <span class="command-desc">Remove the skin from your weapon</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!buy</span>
+                            <span class="command-desc">Open the donation shop page</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!help</span>
+                            <span class="command-desc">Opens this help page</span>
+                        </div>
+                    </div>
+                    <div class="help-tip">
+                        <p>💡 <strong>Tip:</strong> Use <code>!skins</code> to see available skin IDs, then <code>!skin &lt;id&gt;</code> to apply them!</p>
                     </div>
                 </div>
             </div>
+
+            <!-- VIP Benefits Card -->
             <div class="card">
                 <div class="card-header">
-                    <div class="icon">🎁</div>
+                    <div class="icon">👑</div>
                     <div>
-                        <h2>Товары</h2>
-                        <p>Выберите товар для покупки</p>
+                        <h2>VIP Benefits</h2>
+                        <p>Exclusive perks for VIP members</p>
                     </div>
                 </div>
                 <div class="card-content">
-                    <div class="pricing-grid" id="pricingGrid">
-                        <div class="price-card" data-item="100 Cash" data-price="200" data-cash="100">
-                            <div class="price-icon">💰</div>
-                            <div class="price-name">100 Cash</div>
-                            <div class="price-value">200 ₽</div>
+                    <div class="vip-features">
+                        <div class="vip-feature">
+                            <div class="vip-feature-icon">🔫</div>
+                            <div class="vip-feature-text"><strong>Premium Weapons:</strong> M4A1 Gold Edition, Jericho 941 Gold Edition, Gold Edition Paintjob</div>
                         </div>
-                        <div class="price-card" data-item="250 Cash + 50 Bonus" data-price="800" data-cash="700">
-                            <div class="price-icon">💰💰</div>
-                            <div class="price-name">500 + 200 Cash</div>
-                            <div class="price-value">800 ₽</div>
-                            <div class="price-bonus">+200 бонусом</div>
+                        <div class="vip-feature">
+                            <div class="vip-feature-icon">🛡️</div>
+                            <div class="vip-feature-text"><strong>Increased Pickups:</strong> Higher amount of armor and ammo from pickups</div>
                         </div>
-                        <div class="price-card" data-item="500 Cash + 100 Bonus" data-price="1500" data-cash="1500">
-                            <div class="price-icon">💰💰💰</div>
-                            <div class="price-name">1000 + 500 Cash</div>
-                            <div class="price-value">1500 ₽</div>
-                            <div class="price-bonus">+500 бонусом</div>
+                        <div class="vip-feature">
+                            <div class="vip-feature-icon">🎭</div>
+                            <div class="vip-feature-text"><strong>Full Unlock:</strong> All game cosmetics and emotes are unlocked</div>
                         </div>
-                        <div class="price-card" data-item="VIP 30 дней" data-price="200" data-vip="30">
-                            <div class="price-icon">👑</div>
-                            <div class="price-name">VIP 30 дней</div>
-                            <div class="price-value">200 ₽</div>
-                            <div class="price-bonus">Эксклюзив</div>
+                        <div class="vip-feature">
+                            <div class="vip-feature-icon">💰</div>
+                            <div class="vip-feature-text"><strong>Starting Dosh:</strong> More money (dosh) available at the start of the game</div>
                         </div>
-                        <div class="price-card" data-item="VIP 90 дней" data-price="400" data-vip="90">
-                            <div class="price-icon">👑👑👑</div>
-                            <div class="price-name">VIP 90 дней</div>
-                            <div class="price-value">400 ₽</div>
-                            <div class="price-bonus">Лучшая цена</div>
+                        <div class="vip-feature">
+                            <div class="vip-feature-icon">👤</div>
+                            <div class="vip-feature-text"><strong>Exclusive Characters:</strong> Unique VIP-only characters unlocked</div>
                         </div>
                     </div>
-                    <form id="donationForm">
-                        <div class="form-group">
-                            <label>Ваш Player ID *</label>
-                            <input type="text" id="playerId" placeholder="" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Discord (для связи)</label>
-                            <input type="text" id="contact" placeholder="">
-                        </div>
-                        <input type="hidden" id="selectedItem" value="">
-                        <input type="hidden" id="selectedPrice" value="">
-                        <div class="message-block" id="messageBlock" style="display: none;">
-                        <div class="message-header">
-                            <span><label class="message-copy-label">Скопируйте это сообщение и вставьте в комментарий к платежу:</label></span>
-                        </div>
-                        <textarea id="paymentMessage" class="message-textarea" rows="4" readonly></textarea>
-                        <button type="button" onclick="copyPaymentMessage()" class="btn" style="margin-top: 5%;">Копировать</button>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <span class="vip-badge">✨ GET VIP TODAY ✨</span>
                     </div>
-                    </form>
-                    <div id="result" class="result"></div>
+                    <div class="help-tip" style="margin-top: 20px;">
+                        <p>👑 Purchase VIP on our <a href="donate.html"><strong>Donate Page</strong></a> — 30 days for 200 RUB or 90 days for 400 RUB!</p>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="footer">
-            <p><!-- После оплаты товар придет в течение 24 часов. --></p>
-            <p style="margin-top: 10px; font-size: 11px;">Cold Poison | Killing Floor 2</p>
+            <p>Cold Poison | Killing Floor 2</p>
+            <p style="margin-top: 5px; font-size: 11px;">Type <code>!help</code> in game to open this page</p>
         </div>
     </div>
 
     <script>
-        const WIDGET_BASE_URL = 'https://widget.donatepay.ru/widgets/page/f89fddcd6027e7efae9228bb5ee8515db2a6bc9180ca1a6d4bd6e8cfab592259';
-        const WIDGET_ID = '7558499';
-        const donateWidget = document.getElementById('donateWidget');
-        const priceCards = document.querySelectorAll('.price-card');
-        const playerIdInput = document.getElementById('playerId');
-        const contactInput = document.getElementById('contact');
-        const messageBlock = document.getElementById('messageBlock');
-        const paymentMessageTextarea = document.getElementById('paymentMessage');
-        const selectedItemHidden = document.getElementById('selectedItem');
-        const selectedPriceHidden = document.getElementById('selectedPrice');
-        
-        let selectedCard = null;
-        let currentItem = '';
-        let currentPrice = 0;
-        
-        function updateDonateWidget(amount) {
-            if (!amount || isNaN(amount)) return;
-            const newUrl = `${WIDGET_BASE_URL}?widget_id=${WIDGET_ID}&sum=${amount}`;
-            donateWidget.src = newUrl;
-            donateWidget.style.opacity = '0.5';
-            setTimeout(() => {
-                donateWidget.style.opacity = '1';
-            }, 100);
-        }
-        function generatePaymentMessage() {
-            const playerId = playerIdInput.value.trim();
-            const contact = contactInput.value.trim();
-            
-            if (!currentItem || !currentPrice) {
-                return null;
-            }
-            
-            const timestamp = new Date().toLocaleString('ru-RU');
-            
-            let message = ` Покупка на сервере Cold Poison\n\n`;
-            message += ` Player ID: ${playerId || 'НЕ УКАЗАН'}\n`;
-            message += ` Товар: ${currentItem}\n`;
-            message += ` Сумма: ${currentPrice} ₽\n`;
-            message += ` Discord: ${contact || 'не указан'}\n`;
-            message += ` Дата: ${timestamp}\n`;
-            
-            return message;
-        }
-        
-        function updatePaymentMessage() {
-            const playerId = playerIdInput.value.trim();
-            const message = generatePaymentMessage();
-            
-            if (message && currentItem && currentPrice && playerId) {
-                paymentMessageTextarea.value = message;
-                messageBlock.style.display = 'block';
-                
-                messageBlock.style.animation = 'none';
-                setTimeout(() => {
-                    messageBlock.style.animation = 'fadeIn 0.3s ease';
-                }, 10);
-            } else {
-                messageBlock.style.display = 'none';
-            }
-        }
-        
-        function copyPaymentMessage() {
-            const message = paymentMessageTextarea.value;
-            if (!message) {
-                showResult('❌ Нет сообщения для копирования', 'error');
-                return;
-            }
-            
-            navigator.clipboard.writeText(message).then(() => {
-                showResult('Сообщение скопировано! Вставьте его в комментарий к платежу', 'success');
-                
-                const btn = document.querySelector('#messageBlock .btn');
-                if (btn) {
-                    const originalText = btn.textContent;
-                    btn.textContent = 'Скопировано!';
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                    }, 2000);
-                }
-            }).catch(() => {
-                const textarea = document.createElement('textarea');
-                textarea.value = message;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                showResult('Сообщение скопировано!', 'success');
-            });
-        }
-        
-        priceCards.forEach(card => {
-            card.addEventListener('click', () => {
-                priceCards.forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                selectedCard = card;
-                
-                currentItem = card.dataset.item;
-                currentPrice = parseInt(card.dataset.price);
-                
-                console.log('Selected:', currentItem, currentPrice);
-                
-                if (selectedItemHidden) selectedItemHidden.value = currentItem;
-                if (selectedPriceHidden) selectedPriceHidden.value = currentPrice;
-                
-                updateDonateWidget(currentPrice);
-                updatePaymentMessage();
-                
-                card.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    card.style.transform = '';
-                }, 150);
-            });
-        });
-        
-        playerIdInput.addEventListener('input', () => {
-            updatePaymentMessage();
-        });
-        
-        contactInput.addEventListener('input', () => {
-            updatePaymentMessage();
-        });
-        
-        function showResult(message, type) {
-            const resultDiv = document.getElementById('result');
-            resultDiv.textContent = message;
-            resultDiv.className = `result ${type}`;
-            resultDiv.style.display = 'block';
-            
-            setTimeout(() => {
-                resultDiv.style.opacity = '0';
-                setTimeout(() => {
-                    resultDiv.style.display = 'none';
-                    resultDiv.style.opacity = '1';
-                }, 300);
-            }, 5000);
-        }
-        
         function createParticles() {
             const container = document.getElementById('particles');
             const particleCount = 50;
@@ -292,13 +500,7 @@
         }
         
         createParticles();
-        
-        setTimeout(() => {
-            if (priceCards.length > 0 && !selectedCard) {
-                priceCards[0].click();
-            }
-        }, 500);
-        
+
         window.addEventListener('scroll', () => {
             const cards = document.querySelectorAll('.card');
             cards.forEach(card => {

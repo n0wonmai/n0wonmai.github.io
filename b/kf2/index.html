@@ -23,9 +23,13 @@
                 <h1>Ultimate Apocalypse | Donations Page</h1>
             </div>
             <div class="tagline">Your donations help us maintain and develop the server. Thank you.</div>
+            <div class="nav-links">
+                <a href="https://n0wonmai.github.io/b/kf2/" class="nav-link active">💰 Donate</a>
+                <a href="https://n0wonmai.github.io/b/kf2/help/" class="nav-link">❓ Help Center</a>
+            </div>
         </div>
         <div class="instruction-card">
-            <h3>📌 How to buy?</h3>
+            <h3>⚠️ EXTREMELY IMPORTANT INFO, DO NOT SKIP</h3>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
@@ -37,7 +41,7 @@
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <div>Select a product and pay via DonatePay, attaching a message</div>
+                    <div>Select a product, <b>fill required fields</b> and pay via DonatePay, attaching a message</div>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
@@ -51,10 +55,31 @@
                     <div class="icon">💳</div>
                     <div>
                         <h2>Payment</h2>
-                        <p>Select an amount and pay using any convenient method</p>
+                        <p>Select a product you want to buy and pay using any convenient method</p>
                     </div>
                 </div>
+                
                 <div class="card-content">
+                    <form id="donationForm">
+                        <div class="form-group">
+                            <label>Your Player ID <font color=red>*</font></label>
+                            <input type="text" id="playerId" placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Discord (for communication)</label>
+                            <input type="text" id="contact" placeholder="">
+                        </div>
+                        <input type="hidden" id="selectedItem" value="">
+                        <input type="hidden" id="selectedPrice" value="">
+                        <div class="message-block" id="messageBlock" style="display: none;">
+                        <div class="message-header">
+                            <span><label class="message-copy-label">⚠️ Copy this message and paste it into the payment comments:</label></span>
+                        </div>
+                        <textarea id="paymentMessage" class="message-textarea" rows="4" readonly></textarea>
+                        <button type="button" onclick="copyPaymentMessage()" class="btn" style="margin-top: 5%;">Copy</button>
+                    </div>
+                    </form>
+                    <div id="result" class="result"></div>
                     <div class="donate-widget-wrapper">
                        <iframe id="donateWidget" src="https://widget.donatepay.ru/widgets/page/f89fddcd6027e7efae9228bb5ee8515db2a6bc9180ca1a6d4bd6e8cfab592259?widget_id=7558499&sum=200" width="510" height="240" frameBorder="0"></iframe>
                     </div>
@@ -100,27 +125,6 @@
                             <div class="price-bonus">Best price</div>
                         </div>
                     </div>
-                    <form id="donationForm">
-                        <div class="form-group">
-                            <label>Your Player ID *</label>
-                            <input type="text" id="playerId" placeholder="" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Discord (for communication)</label>
-                            <input type="text" id="contact" placeholder="">
-                        </div>
-                        <input type="hidden" id="selectedItem" value="">
-                        <input type="hidden" id="selectedPrice" value="">
-                        <div class="message-block" id="messageBlock" style="display: none;">
-                        <div class="message-header">
-                            <span><label class="message-copy-label">Copy this message and paste it into the payment comments:</label></span>
-                        </div>
-                        <textarea id="paymentMessage" class="message-textarea" rows="4" readonly></textarea>
-                        <button type="button" onclick="copyPaymentMessage()" class="btn" style="margin-top: 5%;">Copy</button>
-                    </div>
-                    </form>
-                    <div id="result" class="result"></div>
                 </div>
             </div>
         </div>

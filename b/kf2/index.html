@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Ultimate Apocalypse - Donate</title>
+    <title data-i18n="title">Ultimate Apocalypse - Donate</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="./assets/styles/styles.css" rel="stylesheet">
     <link href="./assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
@@ -17,35 +17,39 @@
     </div>
 
     <div class="container">
+        <div class="lang-toggle" style="position:fixed;top:15px;right:15px;z-index:100;">
+            <button id="langEn" class="lang-btn active" onclick="setLang('en')">EN</button>
+            <button id="langRu" class="lang-btn" onclick="setLang('ru')">RU</button>
+        </div>
         <div class="header">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <h1>Ultimate Apocalypse | Donations Page</h1>
+                <h1 data-i18n="pageTitle">Ultimate Apocalypse | Donations Page</h1>
             </div>
-            <div class="tagline">Your donations help us maintain and develop the server. Thank you.</div>
+            <div class="tagline" data-i18n="tagline">Your donations help us maintain and develop the server. Thank you.</div>
             <div class="nav-links">
-                <a href="https://n0wonmai.github.io/b/kf2/" class="nav-link active">💰 Donate</a>
-                <a href="https://n0wonmai.github.io/b/kf2/help/" class="nav-link">❓ Help Center</a>
+                <a href="https://n0wonmai.github.io/b/kf2/" class="nav-link active" data-i18n="navDonate">💰 Donate</a>
+                <a href="https://n0wonmai.github.io/b/kf2/help/" class="nav-link" data-i18n="navHelp">❓ Help Center</a>
             </div>
         </div>
         <div class="instruction-card">
-            <h3>⚠️ EXTREMELY IMPORTANT INFO, DO NOT SKIP</h3>
+            <h3 data-i18n="instructionTitle">⚠️ EXTREMELY IMPORTANT INFO, DO NOT SKIP</h3>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <div>Type <code>!myid</code> in the KF2 server chat</div>
+                    <div data-i18n="step1">Type <code>!myid</code> in the KF2 server chat</div>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <div>Copy your <strong>Player ID</strong></div>
+                    <div data-i18n="step2">Copy your <strong>Player ID</strong></div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <div>Select a product, <b>fill required fields</b> and pay via DonatePay, attaching a message</div>
+                    <div data-i18n="step3">Select a product, <b>fill required fields</b> and pay via DonatePay, attaching a message</div>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
-                    <div>Wait for the purchase to be delivered within 24 hours</div>
+                    <div data-i18n="step4">Wait for the purchase to be delivered within 24 hours</div>
                 </div>
             </div>
         </div>
@@ -54,29 +58,29 @@
                 <div class="card-header">
                     <div class="icon">💳</div>
                     <div>
-                        <h2>Payment</h2>
-                        <p>Select a product you want to buy and pay using any convenient method</p>
+                        <h2 data-i18n="paymentTitle">Payment</h2>
+                        <p data-i18n="paymentDesc">Select a product you want to buy and pay using any convenient method</p>
                     </div>
                 </div>
                 
                 <div class="card-content">
                     <form id="donationForm">
                         <div class="form-group">
-                            <label>Your Player ID <font color=red>*</font></label>
+                            <label data-i18n="labelPlayerId">Your Player ID <font color=red>*</font></label>
                             <input type="text" id="playerId" placeholder="" required>
                         </div>
                         <div class="form-group">
-                            <label>Discord (for communication)</label>
+                            <label data-i18n="labelDiscord">Discord (for communication)</label>
                             <input type="text" id="contact" placeholder="">
                         </div>
                         <input type="hidden" id="selectedItem" value="">
                         <input type="hidden" id="selectedPrice" value="">
                         <div class="message-block" id="messageBlock" style="display: none;">
                         <div class="message-header">
-                            <span><label class="message-copy-label">⚠️ Copy this message and paste it into the payment comments:</label></span>
+                            <span><label class="message-copy-label" data-i18n="msgCopyLabel">⚠️ Copy this message and paste it into the payment comments:</label></span>
                         </div>
                         <textarea id="paymentMessage" class="message-textarea" rows="4" readonly></textarea>
-                        <button type="button" onclick="copyPaymentMessage()" class="btn" style="margin-top: 5%;">Copy</button>
+                        <button type="button" onclick="copyPaymentMessage()" class="btn" style="margin-top: 5%;" data-i18n="btnCopy">Copy</button>
                     </div>
                     </form>
                     <div id="result" class="result"></div>
@@ -89,8 +93,8 @@
                 <div class="card-header">
                     <div class="icon">🎁</div>
                     <div>
-                        <h2>Products</h2>
-                        <p>Select a product to purchase</p>
+                        <h2 data-i18n="productsTitle">Products</h2>
+                        <p data-i18n="productsDesc">Select a product to purchase</p>
                     </div>
                 </div>
                 <div class="card-content">
@@ -102,27 +106,27 @@
                         </div>
                         <div class="price-card" data-item="250 Cash + 50 Bonus" data-price="800" data-cash="700">
                             <div class="price-icon">💰💰</div>
-                            <div class="price-name">500 + 200 Cash</div>
+                            <div class="price-name" data-i18n="price2Name">500 + 200 Cash</div>
                             <div class="price-value">800 RUB</div>
-                            <div class="price-bonus">+200 bonus</div>
+                            <div class="price-bonus" data-i18n="price2Bonus">+200 bonus</div>
                         </div>
                         <div class="price-card" data-item="500 Cash + 100 Bonus" data-price="1500" data-cash="1500">
                             <div class="price-icon">💰💰💰</div>
-                            <div class="price-name">1000 + 500 Cash</div>
+                            <div class="price-name" data-i18n="price3Name">1000 + 500 Cash</div>
                             <div class="price-value">1500 RUB</div>
-                            <div class="price-bonus">+500 bonus</div>
+                            <div class="price-bonus" data-i18n="price3Bonus">+500 bonus</div>
                         </div>
                         <div class="price-card" data-item="VIP 30 days" data-price="200" data-vip="30">
                             <div class="price-icon">👑</div>
-                            <div class="price-name">VIP 30 days</div>
+                            <div class="price-name" data-i18n="priceVip30Name">VIP 30 days</div>
                             <div class="price-value">200 RUB</div>
-                            <div class="price-bonus">Exclusive</div>
+                            <div class="price-bonus" data-i18n="priceVip30Bonus">Exclusive</div>
                         </div>
                         <div class="price-card" data-item="VIP 90 days" data-price="400" data-vip="90">
                             <div class="price-icon">👑👑👑</div>
-                            <div class="price-name">VIP 90 days</div>
+                            <div class="price-name" data-i18n="priceVip90Name">VIP 90 days</div>
                             <div class="price-value">400 RUB</div>
-                            <div class="price-bonus">Best price</div>
+                            <div class="price-bonus" data-i18n="priceVip90Bonus">Best price</div>
                         </div>
                     </div>
                 </div>
@@ -135,6 +139,87 @@
     </div>
 
     <script>
+        const I18N = {
+            en: {
+                title: 'Ultimate Apocalypse - Donate',
+                pageTitle: 'Ultimate Apocalypse | Donations Page',
+                tagline: 'Your donations help us maintain and develop the server. Thank you.',
+                navDonate: '💰 Donate',
+                navHelp: '❓ Help Center',
+                instructionTitle: '⚠️ EXTREMELY IMPORTANT INFO, DO NOT SKIP',
+                step1: 'Type <code>!myid</code> in the KF2 server chat',
+                step2: 'Copy your <strong>Player ID</strong>',
+                step3: 'Select a product, <b>fill required fields</b> and pay via DonatePay, attaching a message',
+                step4: 'Wait for the purchase to be delivered within 24 hours',
+                paymentTitle: 'Payment',
+                paymentDesc: 'Select a product you want to buy and pay using any convenient method',
+                labelPlayerId: 'Your Player ID <font color=red>*</font>',
+                labelDiscord: 'Discord (for communication)',
+                msgCopyLabel: '⚠️ Copy this message and paste it into the payment comments:',
+                btnCopy: 'Copy',
+                copied: 'Copied!',
+                productsTitle: 'Products',
+                productsDesc: 'Select a product to purchase',
+                price2Name: '500 + 200 Cash',
+                price3Name: '1000 + 500 Cash',
+                price2Bonus: '+200 bonus',
+                price3Bonus: '+500 bonus',
+                priceVip30Name: 'VIP 30 days',
+                priceVip30Bonus: 'Exclusive',
+                priceVip90Name: 'VIP 90 days',
+                priceVip90Bonus: 'Best price',
+                noMsg: '❌ No message to copy',
+                msgCopied: 'Message copied! Paste it into the payment comments'
+            },
+            ru: {
+                title: 'Ultimate Apocalypse - Пожертвования',
+                pageTitle: 'Ultimate Apocalypse | Страница пожертвований',
+                tagline: 'Ваши пожертвования помогают нам поддерживать и развивать сервер. Спасибо.',
+                navDonate: '💰 Пожертвовать',
+                navHelp: '❓ Центр помощи',
+                instructionTitle: '⚠️ ЧРЕЗВЫЧАЙНО ВАЖНАЯ ИНФОРМАЦИЯ, НЕ ПРОПУСКАЙТЕ',
+                step1: 'Введите <code>!myid</code> в чате сервера KF2',
+                step2: 'Скопируйте ваш <strong>ID игрока</strong>',
+                step3: 'Выберите товар, <b>заполните обязательные поля</b> и оплатите через DonatePay, приложив сообщение',
+                step4: 'Дождитесь доставки покупки в течение 24 часов',
+                paymentTitle: 'Оплата',
+                paymentDesc: 'Выберите товар и оплатите удобным способом',
+                labelPlayerId: 'Ваш ID игрока <font color=red>*</font>',
+                labelDiscord: 'Discord (для связи)',
+                msgCopyLabel: '⚠️ Скопируйте это сообщение и вставьте его в комментарии к платежу:',
+                btnCopy: 'Скопировать',
+                copied: 'Скопировано!',
+                productsTitle: 'Товары',
+                productsDesc: 'Выберите товар для покупки',
+                price2Name: '500 + 200 Cash',
+                price3Name: '1000 + 500 Cash',
+                price2Bonus: '+200 бонус',
+                price3Bonus: '+500 бонус',
+                priceVip30Name: 'VIP 30 дней',
+                priceVip30Bonus: 'Эксклюзив',
+                priceVip90Name: 'VIP 90 дней',
+                priceVip90Bonus: 'Лучшая цена',
+                noMsg: '❌ Нет сообщения для копирования',
+                msgCopied: 'Сообщение скопировано! Вставьте его в комментарии к платежу'
+            }
+        };
+        let currentLang = localStorage.getItem('kf2_lang') || 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('kf2_lang', lang);
+            document.documentElement.lang = lang;
+            document.getElementById('langEn').classList.toggle('active', lang === 'en');
+            document.getElementById('langRu').classList.toggle('active', lang === 'ru');
+            const t = I18N[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.innerHTML = t[key];
+            });
+            document.title = t.title;
+            updatePaymentMessage();
+        }
+
         const WIDGET_BASE_URL = 'https://widget.donatepay.ru/widgets/page/f89fddcd6027e7efae9228bb5ee8515db2a6bc9180ca1a6d4bd6e8cfab592259';
         const WIDGET_ID = '7558499';
         const donateWidget = document.getElementById('donateWidget');
@@ -199,17 +284,17 @@
         function copyPaymentMessage() {
             const message = paymentMessageTextarea.value;
             if (!message) {
-                showResult('❌ No message to copy', 'error');
+                showResult(I18N[currentLang].noMsg, 'error');
                 return;
             }
             
             navigator.clipboard.writeText(message).then(() => {
-                showResult('Message copied! Paste it into the payment comments', 'success');
+                showResult(I18N[currentLang].msgCopied, 'success');
                 
                 const btn = document.querySelector('#messageBlock .btn');
                 if (btn) {
                     const originalText = btn.textContent;
-                    btn.textContent = 'Copied!';
+                    btn.textContent = I18N[currentLang].copied;
                     setTimeout(() => {
                         btn.textContent = originalText;
                     }, 2000);
@@ -221,7 +306,7 @@
                 textarea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textarea);
-                showResult('Message copied!', 'success');
+                showResult(I18N[currentLang].msgCopied, 'success');
             });
         }
         
@@ -296,6 +381,7 @@
         }
         
         createParticles();
+        setLang(currentLang);
         
         setTimeout(() => {
             if (priceCards.length > 0 && !selectedCard) {

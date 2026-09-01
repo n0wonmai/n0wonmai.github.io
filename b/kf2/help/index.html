@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Ultimate Apocalypse - Help Center</title>
+    <title data-i18n="title">Ultimate Apocalypse - Help Center</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="./assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="./assets/images/favicon.ico" rel="shortcut icon" sizes="32x32">
@@ -350,6 +350,41 @@
             color: #e94560;
             text-decoration: none;
         }
+
+        .lang-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+            display: flex;
+            gap: 5px;
+            background: rgba(255,255,255,0.05);
+            padding: 5px;
+            border-radius: 25px;
+            border: 1px solid rgba(233,69,96,0.3);
+        }
+
+        .lang-btn {
+            padding: 5px 14px;
+            border: none;
+            border-radius: 20px;
+            background: transparent;
+            color: #aaa;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .lang-btn:hover {
+            color: #e94560;
+        }
+
+        .lang-btn.active {
+            background: #e94560;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -359,15 +394,19 @@
     </div>
 
     <div class="container">
+        <div class="lang-toggle">
+            <button id="langEn" class="lang-btn active" onclick="setLang('en')">EN</button>
+            <button id="langRu" class="lang-btn" onclick="setLang('ru')">RU</button>
+        </div>
         <div class="header">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <h1>Ultimate Apocalypse | Help Center</h1>
+                <h1 data-i18n="pageTitle">Ultimate Apocalypse | Help Center</h1>
             </div>
-            <div class="tagline">Your guide to server commands and VIP benefits</div>
+            <div class="tagline" data-i18n="tagline">Your guide to server commands and VIP benefits</div>
             <div class="nav-links">
-                <a href="https://n0wonmai.github.io/b/kf2/" class="nav-link">💰 Donate</a>
-                <a href="https://n0wonmai.github.io/b/kf2/help/" class="nav-link active">❓ Help Center</a>
+                <a href="https://n0wonmai.github.io/b/kf2/" class="nav-link" data-i18n="navDonate">💰 Donate</a>
+                <a href="https://n0wonmai.github.io/b/kf2/help/" class="nav-link active" data-i18n="navHelp">❓ Help Center</a>
             </div>
         </div>
 
@@ -377,55 +416,63 @@
                 <div class="card-header">
                     <div class="icon">⌨️</div>
                     <div>
-                        <h2>Server Commands</h2>
-                        <p>Type these commands in the KF2 server chat</p>
+                        <h2 data-i18n="commandsTitle">Server Commands</h2>
+                        <p data-i18n="commandsDesc">Type these commands in the KF2 server chat</p>
                     </div>
                 </div>
                 <div class="card-content">
                     <div class="commands-list">
                         <div class="command-item">
                             <span class="command-code">!myid</span>
-                            <span class="command-desc">Shows your Player ID</span>
+                            <span class="command-desc" data-i18n="cmd_myid">Shows your Player ID</span>
                         </div>
                         <div class="command-item">
                             <span class="command-code">!lk</span>
-                            <span class="command-desc">Shows your personal player information</span>
+                            <span class="command-desc" data-i18n="cmd_lk">Shows your personal player information</span>
                         </div>
                         <div class="command-item">
                             <span class="command-code">!store</span>
-                            <span class="command-desc">Opens the Orgelbox store</span>
+                            <span class="command-desc" data-i18n="cmd_store">Opens the Orgelbox store</span>
                         </div>
                         <div class="command-item">
                             <span class="command-code">!skins</span>
-                            <span class="command-desc">Shows all skins you own</span>
+                            <span class="command-desc" data-i18n="cmd_skins">Shows all skins you own</span>
                         </div>
                         <div class="command-item">
                             <span class="command-code">!weapons</span>
-                            <span class="command-desc">Shows all weapons you own</span>
+                            <span class="command-desc" data-i18n="cmd_weapons">Shows all weapons you own</span>
                         </div>
                         <div class="command-item">
                             <span class="command-code">!equip &lt;id&gt;</span>
-                            <span class="command-desc">Equip a weapon from your list</span>
+                            <span class="command-desc" data-i18n="cmd_equip">Equip a weapon from your list</span>
                         </div>
                         <div class="command-item">
                             <span class="command-code">!skin &lt;id&gt;</span>
-                            <span class="command-desc">Apply a skin to your weapon</span>
+                            <span class="command-desc" data-i18n="cmd_skin">Apply a skin to your weapon</span>
                         </div>
                         <div class="command-item">
                             <span class="command-code">!clean</span>
-                            <span class="command-desc">Remove the skin from your weapon</span>
+                            <span class="command-desc" data-i18n="cmd_clean">Remove the skin from your weapon</span>
                         </div>
                         <div class="command-item">
                             <span class="command-code">!buy</span>
-                            <span class="command-desc">Open the donation shop page</span>
+                            <span class="command-desc" data-i18n="cmd_buy">Open the donation shop page</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!wave &lt;multiplier&gt;</span>
+                            <span class="command-desc" data-i18n="cmd_wave">Increases the number of zeds on the next wave by the specified multiplier</span>
+                        </div>
+                        <div class="command-item">
+                            <span class="command-code">!killzeds</span>
+                            <span class="command-desc" data-i18n="cmd_killzeds">Kill the zeds (in case they are stuck)</span>
                         </div>
                         <div class="command-item">
                             <span class="command-code">!help</span>
-                            <span class="command-desc">Opens this help page</span>
+                            <span class="command-desc" data-i18n="cmd_help">Opens this help page</span>
                         </div>
                     </div>
                     <div class="help-tip">
-                        <p>💡 <strong>Tip:</strong> Use <code>!skins</code> to see available skin IDs, then <code>!skin &lt;id&gt;</code> to apply them!</p>
+                        <p data-i18n="helpTip">💡 <strong>Tip:</strong> Use <code>!skins</code> to see available skin IDs, then <code>!skin &lt;id&gt;</code> to apply them!</p>
                     </div>
                 </div>
             </div>
@@ -435,38 +482,38 @@
                 <div class="card-header">
                     <div class="icon">👑</div>
                     <div>
-                        <h2>VIP Benefits</h2>
-                        <p>Exclusive features for VIP members</p>
+                        <h2 data-i18n="vipTitle">VIP Benefits</h2>
+                        <p data-i18n="vipDesc">Exclusive features for VIP members</p>
                     </div>
                 </div>
                 <div class="card-content">
                     <div class="vip-features">
                         <div class="vip-feature">
                             <div class="vip-feature-icon">⭐</div>
-                            <div class="vip-feature-text"><strong>Premium Weapons:</strong> M4A1 Gold Edition, Jericho 941 Gold Edition, Gold Edition Paintjob</div>
+                            <div class="vip-feature-text" data-i18n="vip1"><strong>Premium Weapons:</strong> M4A1 Gold Edition, Jericho 941 Gold Edition, Gold Edition Paintjob</div>
                         </div>
                         <div class="vip-feature">
                             <div class="vip-feature-icon">⭐</div>
-                            <div class="vip-feature-text"><strong>Increased Pickups:</strong> Higher amount of armor and ammo from pickups</div>
+                            <div class="vip-feature-text" data-i18n="vip2"><strong>Increased Pickups:</strong> Higher amount of armor and ammo from pickups</div>
                         </div>
                         <div class="vip-feature">
                             <div class="vip-feature-icon">⭐</div>
-                            <div class="vip-feature-text"><strong>Full Unlock:</strong> All game cosmetics and emotes are unlocked</div>
+                            <div class="vip-feature-text" data-i18n="vip3"><strong>Full Unlock:</strong> All game cosmetics and emotes are unlocked</div>
                         </div>
                         <div class="vip-feature">
                             <div class="vip-feature-icon">⭐</div>
-                            <div class="vip-feature-text"><strong>Starting Dosh:</strong> More money (dosh) available at the start of the game</div>
+                            <div class="vip-feature-text" data-i18n="vip4"><strong>Starting Dosh:</strong> More money (dosh) available at the start of the game</div>
                         </div>
                         <div class="vip-feature">
                             <div class="vip-feature-icon">⭐</div>
-                            <div class="vip-feature-text"><strong>Exclusive Characters:</strong> Unique VIP-only characters unlocked</div>
+                            <div class="vip-feature-text" data-i18n="vip5"><strong>Exclusive Characters:</strong> Unique VIP-only characters unlocked</div>
                         </div>
                     </div>
                     <div style="margin-top: 20px; text-align: center;">
-                        <span class="vip-badge">✨ GET VIP TODAY ✨</span>
+                        <span class="vip-badge" data-i18n="vipBadge">✨ GET VIP TODAY ✨</span>
                     </div>
                     <div class="help-tip" style="margin-top: 20px;">
-                        <p>Purchase VIP on our <a href="https://n0wonmai.github.io/b/kf2/"><strong>Donate Page</strong></a></p>
+                        <p data-i18n="vipPurchase">Purchase VIP on our <a href="https://n0wonmai.github.io/b/kf2/"><strong>Donate Page</strong></a></p>
                     </div>
                 </div>
             </div>
@@ -474,11 +521,93 @@
 
         <div class="footer">
             <p>Ultimate Apocalypse | Killing Floor 2</p>
-            <p style="margin-top: 5px; font-size: 11px;">Type <code>!help</code> in game to open this page</p>
+            <p style="margin-top: 5px; font-size: 11px;" data-i18n="footerTip">Type <code>!help</code> in game to open this page</p>
         </div>
     </div>
 
     <script>
+        const I18N = {
+            en: {
+                title: 'Ultimate Apocalypse - Help Center',
+                pageTitle: 'Ultimate Apocalypse | Help Center',
+                tagline: 'Your guide to server commands and VIP benefits',
+                navDonate: '💰 Donate',
+                navHelp: '❓ Help Center',
+                commandsTitle: 'Server Commands',
+                commandsDesc: 'Type these commands in the KF2 server chat',
+                cmd_myid: 'Shows your Player ID',
+                cmd_lk: 'Shows your personal player information',
+                cmd_store: 'Opens the Orgelbox store',
+                cmd_skins: 'Shows all skins you own',
+                cmd_weapons: 'Shows all weapons you own',
+                cmd_equip: 'Equip a weapon from your list',
+                cmd_skin: 'Apply a skin to your weapon',
+                cmd_clean: 'Remove the skin from your weapon',
+                cmd_buy: 'Open the donation shop page',
+                cmd_wave: 'Increases the number of zeds on the next wave by the specified multiplier',
+                cmd_killzeds: 'Kill the zeds (in case they are stuck)',
+                cmd_help: 'Opens this help page',
+                helpTip: '💡 <strong>Tip:</strong> Use <code>!skins</code> to see available skin IDs, then <code>!skin &lt;id&gt;</code> to apply them!',
+                vipTitle: 'VIP Benefits',
+                vipDesc: 'Exclusive features for VIP members',
+                vip1: '<strong>Premium Weapons:</strong> M4A1 Gold Edition, Jericho 941 Gold Edition, Gold Edition Paintjob',
+                vip2: '<strong>Increased Pickups:</strong> Higher amount of armor and ammo from pickups',
+                vip3: '<strong>Full Unlock:</strong> All game cosmetics and emotes are unlocked',
+                vip4: '<strong>Starting Dosh:</strong> More money (dosh) available at the start of the game',
+                vip5: '<strong>Exclusive Characters:</strong> Unique VIP-only characters unlocked',
+                vipBadge: '✨ GET VIP TODAY ✨',
+                vipPurchase: 'Purchase VIP on our <a href="https://n0wonmai.github.io/b/kf2/"><strong>Donate Page</strong></a>',
+                footerTip: 'Type <code>!help</code> in game to open this page'
+            },
+            ru: {
+                title: 'Ultimate Apocalypse - Центр помощи',
+                pageTitle: 'Ultimate Apocalypse | Центр помощи',
+                tagline: 'Ваше руководство по командам сервера и преимуществам VIP',
+                navDonate: '💰 Пожертвовать',
+                navHelp: '❓ Центр помощи',
+                commandsTitle: 'Команды сервера',
+                commandsDesc: 'Введите эти команды в чате сервера KF2',
+                cmd_myid: 'Показывает ваш ID игрока',
+                cmd_lk: 'Показывает вашу персональную информацию',
+                cmd_store: 'Открывает магазин Orgelbox',
+                cmd_skins: 'Показывает все скины, которыми вы владеете',
+                cmd_weapons: 'Показывает все оружие, которым вы владеете',
+                cmd_equip: 'Экипировать оружие из вашего списка',
+                cmd_skin: 'Применить скин к вашему оружию',
+                cmd_clean: 'Снять скин с вашего оружия',
+                cmd_buy: 'Открыть страницу магазина пожертвований',
+                cmd_wave: 'Увеличивает количество зедов на следующей волне на указанный множитель',
+                cmd_killzeds: 'Убить зедов (в случае если они застряли)',
+                cmd_help: 'Открывает эту страницу помощи',
+                helpTip: '💡 <strong>Совет:</strong> Используйте <code>!skins</code>, чтобы увидеть доступные ID скинов, затем <code>!skin &lt;id&gt;</code>, чтобы применить их!',
+                vipTitle: 'Преимущества VIP',
+                vipDesc: 'Эксклюзивные функции для VIP-участников',
+                vip1: '<strong>Премиум-оружие:</strong> M4A1 Gold Edition, Jericho 941 Gold Edition, Gold Edition Paintjob',
+                vip2: '<strong>Увеличенные подборы:</strong> Больше брони и патронов из подборов',
+                vip3: '<strong>Полная разблокировка:</strong> Все косметические предметы и эмоуны разблокированы',
+                vip4: '<strong>Стартовые деньги:</strong> Больше денег (dosh) в начале игры',
+                vip5: '<strong>Эксклюзивные персонажи:</strong> Уникальные VIP-персонажи разблокированы',
+                vipBadge: '✨ ПОЛУЧИ VIP СЕГОДНЯ ✨',
+                vipPurchase: 'Приобретите VIP на нашей <a href="https://n0wonmai.github.io/b/kf2/"><strong>странице пожертвований</strong></a>',
+                footerTip: 'Введите <code>!help</code> в игре, чтобы открыть эту страницу'
+            }
+        };
+        let currentLang = localStorage.getItem('kf2_lang') || 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('kf2_lang', lang);
+            document.documentElement.lang = lang;
+            document.getElementById('langEn').classList.toggle('active', lang === 'en');
+            document.getElementById('langRu').classList.toggle('active', lang === 'ru');
+            const t = I18N[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.innerHTML = t[key];
+            });
+            document.title = t.title;
+        }
+
         function createParticles() {
             const container = document.getElementById('particles');
             const particleCount = 50;
@@ -503,6 +632,7 @@
         }
         
         createParticles();
+        setLang(currentLang);
 
         window.addEventListener('scroll', () => {
             const cards = document.querySelectorAll('.card');
